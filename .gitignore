@@ -1,0 +1,7 @@
+# 金鑰只放在本機，不上傳
+.env
+.dev.vars
+relay/.dev.vars
+relay/.env
+node_modules/
+.wrangler/

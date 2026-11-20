@@ -1,0 +1,3 @@
+# 複製成 .dev.vars（這個檔案已被 .gitignore 排除，不會上傳），再填入金鑰。
+# 正式上線時，同一把金鑰要存進 Cloudflare Worker 的 Secrets（名稱 DIFY_API_KEY）。
+DIFY_API_KEY=app-在這裡貼上-Dify-客服知識庫的-API-金鑰
