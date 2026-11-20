@@ -55,10 +55,10 @@
   .links{display:flex;flex-wrap:wrap;gap:12px;margin-top:20px}
 
 
-  [tabindex="-1"]:focus{outline:none}
+  [tabindex="-1"]:focus:not(:focus-visible){outline:none}
 
   /* ---------- top menu ---------- */
-  .topbar{position:sticky;top:0;z-index:20;background:rgba(252,252,250,.96);border-bottom:1px solid var(--line);backdrop-filter:blur(6px)}
+  .topbar-wrap{position:sticky;top:0;z-index:20;background:rgba(252,252,250,.96);border-bottom:1px solid var(--line);backdrop-filter:blur(6px)}
   .topbar ul{display:flex;gap:8px;margin:0 auto;padding:10px 28px;list-style:none;max-width:1100px;overflow-x:auto;white-space:nowrap;scrollbar-width:thin}
   .topbar a{display:inline-flex;align-items:center;min-height:44px;padding:0 16px;border:1px solid var(--line);border-radius:999px;color:var(--muted);font-size:15px;font-weight:700;text-decoration:none;background:#fff}
   .topbar a:hover{color:var(--ink);border-color:var(--ink)}
@@ -129,7 +129,7 @@
   .lane .d{font-size:15px;color:var(--muted)}
 
   details{margin-top:22px;border-top:1px solid var(--line);padding-top:14px}
-  summary{cursor:pointer;font-weight:700;font-size:16px;list-style:none;display:flex;align-items:center;gap:10px}
+  summary{min-height:44px;cursor:pointer;font-weight:700;font-size:16px;list-style:none;display:flex;align-items:center;gap:10px}
   summary::-webkit-details-marker{display:none}
   summary::before{content:"+";display:inline-grid;place-items:center;width:22px;height:22px;border:2px solid var(--ink);border-radius:6px;font-size:15px;line-height:1}
   details[open] summary::before{content:"−"}
@@ -150,7 +150,7 @@
   .tabs .sub{margin:0 0 18px;font-size:15px;color:var(--muted)}
   .plan .who-tag{background:#fff;color:var(--muted);border:2px dashed var(--line)}
   .proof{font-size:15px;background:var(--panel);border-radius:10px;padding:12px 16px;margin:4px 0 20px}
-  .no-js .tabs [role=tabpanel][hidden]{display:block}
+  html:not(.js) [role=tabpanel][hidden]{display:block}
   .video{position:relative;aspect-ratio:16/9;max-width:760px;margin:0 0 26px;border-radius:12px;overflow:hidden;background:#000}
   .video iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
   footer{padding:48px 0 64px;color:var(--muted);font-size:15px}
@@ -219,7 +219,7 @@
       </div>
       <dl class="facts">
         <div><dt>經歷</dt><dd>客服、金融、保險理賠、企業培訓，<span style="white-space:nowrap">共 13 年</span></dd></div>
-        <div><dt>學習中</dt><dd>緯育 TibaMe 商務 AI 應用開發人才養成班（職訓課程，12/3 結訓）：Python、系統分析、Azure AI 服務、NLP 與 LLM 應用、RAG、雲端資料庫、Git／GitHub、Docker 部署、規格驅動開發（SDD）、敏捷專案管理</dd></div>
+        <div><dt>學習中</dt><dd>緯育 TibaMe 商務 AI 應用開發人才養成班（職訓課程，2026/12/3 結訓）：Python、系統分析、Azure AI 服務、NLP 與 LLM 應用、RAG、雲端資料庫、Git／GitHub、Docker 部署、規格驅動開發（SDD）、敏捷專案管理</dd></div>
         <div><dt>工具</dt><dd>Dify、Lovable、Azure AI、Gemini、Flutter，並用 Codex 協作開發</dd></div>
         <div><dt>目標</dt><dd>AI 解決方案顧問、售前顧問、企業 AI 導入與培訓</dd></div>
       </dl>
@@ -276,9 +276,9 @@
       <p class="note">完整展示影片預計 11/28 公開。</p>
     <p class="shots-h">畫面截圖（我負責的理賠文件辨識；皆為模擬文件）</p>
     <ul class="shots">
-      <li><figure><img src="img/ins-agent6-classify.png" alt="理賠文件辨識的「認出種類」步驟：比對關鍵字後，判定為 D14 醫療費用收據" loading="lazy" width="878" height="288"><figcaption>認出種類：比對文件裡的關鍵字，判定這份是「D14 醫療費用收據」。</figcaption></figure></li>
-      <li><figure><img src="img/ins-agent6-redact.png" alt="理賠文件辨識的「遮個資」步驟：換掉電話與姓名 2 處，只顯示遮過的文字" loading="lazy" width="878" height="600"><figcaption>遮個資：先換掉電話與姓名 2 處，後面的步驟只看遮過的文字。</figcaption></figure></li>
-      <li><figure><img src="img/ins-agent6-checkfail.png" alt="理賠待辦畫面：上傳的延誤證明缺少延誤期間，標示不合格並提示向航空公司索取" loading="lazy" width="724" height="392"><figcaption>文件不齊就說明原因：延誤證明沒寫延誤期間，標示不合格，並提示向航空公司索取。</figcaption></figure></li>
+      <li><figure><a href="img/ins-agent6-classify.png" target="_blank" rel="noopener" aria-label="開啟原圖：認出種類：比對文件裡的關鍵字"><img src="img/ins-agent6-classify.png" alt="理賠文件辨識的「認出種類」步驟：比對關鍵字後，判定為 D14 醫療費用收據" loading="lazy" width="878" height="288"></a><figcaption>認出種類：比對文件裡的關鍵字，判定這份是「D14 醫療費用收據」。</figcaption></figure></li>
+      <li><figure><a href="img/ins-agent6-redact.png" target="_blank" rel="noopener" aria-label="開啟原圖：遮個資：先換掉電話與姓名 2 處"><img src="img/ins-agent6-redact.png" alt="理賠文件辨識的「遮個資」步驟：換掉電話與姓名 2 處，只顯示遮過的文字" loading="lazy" width="878" height="600"></a><figcaption>遮個資：先換掉電話與姓名 2 處，後面的步驟只看遮過的文字。</figcaption></figure></li>
+      <li><figure><a href="img/ins-agent6-checkfail.png" target="_blank" rel="noopener" aria-label="開啟原圖：文件不齊就說明原因：延誤證明沒寫延誤期間"><img src="img/ins-agent6-checkfail.png" alt="理賠待辦畫面：上傳的延誤證明缺少延誤期間，標示不合格並提示向航空公司索取" loading="lazy" width="724" height="392"></a><figcaption>文件不齊就說明原因：延誤證明沒寫延誤期間，標示不合格，並提示向航空公司索取。</figcaption></figure></li>
     </ul>
       <details class="techs">
         <summary>使用技術</summary>
@@ -298,7 +298,7 @@
         <button role="tab" id="ins-tab-6" aria-controls="ins-p-6" aria-selected="false" tabindex="-1">LINE 查詢</button>
       </div>
 
-      <div role="tabpanel" id="ins-p-1" aria-labelledby="ins-tab-1">
+      <div role="tabpanel" tabindex="0" id="ins-p-1" aria-labelledby="ins-tab-1">
         <p class="sub">旅客還沒買保險，想知道哪個方案適合這趟旅行。</p>
         <ol class="lane">
           <li class="human"><span class="who-tag">人</span><div><p>排好旅遊日程，選出最在意的 3 件事</p><p class="d">例如班機延誤、海外就醫。日程也可以請瀏覽器裡的小助理透過 WebMCP 協助排。</p></div></li>
@@ -310,7 +310,7 @@
         </ol>
       </div>
 
-      <div role="tabpanel" id="ins-p-2" aria-labelledby="ins-tab-2" hidden>
+      <div role="tabpanel" tabindex="0" id="ins-p-2" aria-labelledby="ins-tab-2" hidden>
         <p class="sub">旅途中出事了，旅客想知道能不能理賠、要準備什麼。</p>
         <ol class="lane">
           <li class="human"><span class="who-tag">人</span><div><p>上傳保單 PDF</p></div></li>
@@ -322,7 +322,7 @@
         </ol>
       </div>
 
-      <div role="tabpanel" id="ins-p-3" aria-labelledby="ins-tab-3" hidden>
+      <div role="tabpanel" tabindex="0" id="ins-p-3" aria-labelledby="ins-tab-3" hidden>
         <p class="sub">旅客依待辦上傳文件，例如航空公司開立的延誤證明。</p>
         <ol class="lane">
           <li class="human"><span class="who-tag">人</span><div><p>旅客上傳理賠文件</p></div></li>
@@ -335,7 +335,7 @@
         <p class="proof">驗收：以 63 份模擬文件比較本機 OCR 與 Azure Document Intelligence，並用 Python 驗收待辦配對、個資遮蔽與存檔失敗等情境。</p>
       </div>
 
-      <div role="tabpanel" id="ins-p-4" aria-labelledby="ins-tab-4" hidden>
+      <div role="tabpanel" tabindex="0" id="ins-p-4" aria-labelledby="ins-tab-4" hidden>
         <p class="sub">文件備齊後，協助旅客寄給保險公司。</p>
         <ol class="lane">
           <li class="code"><span class="who-tag">程式</span><div><p>還缺文件時寄提醒信</p><p class="d">缺文件滿 24 小時寄第一封，之後每 3 天一封，最多 3 封；由 Celery 定時排程。</p></div></li>
@@ -346,7 +346,7 @@
         </ol>
       </div>
 
-      <div role="tabpanel" id="ins-p-5" aria-labelledby="ins-tab-5" hidden>
+      <div role="tabpanel" tabindex="0" id="ins-p-5" aria-labelledby="ins-tab-5" hidden>
         <p class="sub">管理端：把保險條款變成 AI 能查詢、又能回查原文的知識庫。旅客不會看到這一段。</p>
         <ol class="lane">
           <li class="code"><span class="who-tag">程式</span><div><p>取得各保險公司的條款 PDF，切成一條一段</p></div></li>
@@ -358,7 +358,7 @@
         <p class="proof">我做的驗證工具：把切分後的條文與原始 PDF 並排比對，在畫面上標示差異，讓團隊回查缺漏、錯字或混入其他條文的地方。</p>
       </div>
 
-      <div role="tabpanel" id="ins-p-6" aria-labelledby="ins-tab-6" hidden>
+      <div role="tabpanel" tabindex="0" id="ins-p-6" aria-labelledby="ins-tab-6" hidden>
         <p class="sub">不開網站，也能在 LINE 查自己的比較紀錄和理賠待辦。</p>
         <ol class="lane">
           <li class="human"><span class="who-tag">人</span><div><p>在網站帳號頁產生 6 位數綁定碼，在 LINE 傳「綁定 123456」</p><p class="d">綁定碼 10 分鐘內有效，只能用一次。</p></div></li>
@@ -415,7 +415,7 @@
         <button role="tab" id="car-tab-5" aria-controls="car-p-5" aria-selected="false" tabindex="-1">驗證與資料安全</button>
       </div>
 
-      <div role="tabpanel" id="car-p-1" aria-labelledby="car-tab-1">
+      <div role="tabpanel" tabindex="0" id="car-p-1" aria-labelledby="car-tab-1">
         <p class="sub">開車時想知道雨刷、除霧、霧燈怎麼開，直接用說的問，答案只來自這台車的手冊，並附上 PDF 頁碼。</p>
         <ol class="lane">
           <li class="code"><span class="who-tag">程式</span><div><p>事先把 Corolla Altis 車主手冊 PDF 切成段落、記下頁碼並轉成向量</p><p class="d">保養排程表另外轉成「項目、里程、月數」文字列。整本手冊不會送給模型。</p></div></li>
@@ -429,7 +429,7 @@
         <p class="proof">手冊問答 40 題批次測試（同音、同義、句型、應拒答）：37 題通過、0 題答錯。</p>
       </div>
 
-      <div role="tabpanel" id="car-p-2" aria-labelledby="car-tab-2" hidden>
+      <div role="tabpanel" tabindex="0" id="car-p-2" aria-labelledby="car-tab-2" hidden>
         <p class="sub">發生事故時，按一下就能用說的，系統一步步問：有沒有人受傷、人在不在安全位置、119 和 110 打了沒。</p>
         <ol class="lane">
           <li class="human"><span class="who-tag">人</span><div><p>按下通話直接開口，可隨時插話</p><p class="d">連線完成前的聲音先暫存在手機，最多 5 秒，不會漏掉第一句。</p></div></li>
@@ -441,7 +441,7 @@
         <p class="proof">用 170 句規則層測試、60 句 AI 判讀測試，加上兩輪 44 句與 63 句不照劇本的說法壓力測試，判錯的情況逐一修正；也在學校吵雜環境與手機熱點下實機演練。</p>
       </div>
 
-      <div role="tabpanel" id="car-p-3" aria-labelledby="car-tab-3" hidden>
+      <div role="tabpanel" tabindex="0" id="car-p-3" aria-labelledby="car-tab-3" hidden>
         <p class="sub">像 Google 地圖一樣搜尋目的地，導航中也能用語音問手冊問題，不必停下導航。</p>
         <ol class="lane">
           <li class="human"><span class="who-tag">人</span><div><p>打字或用說的找目的地，或按加油站、停車場、充電站</p></div></li>
@@ -453,7 +453,7 @@
         <p class="proof">這個功能刻意不交給 AI 猜：道路、距離與抵達時間必須正確，全部取自 SDK 的實際資料。</p>
       </div>
 
-      <div role="tabpanel" id="car-p-4" aria-labelledby="car-tab-4" hidden>
+      <div role="tabpanel" tabindex="0" id="car-p-4" aria-labelledby="car-tab-4" hidden>
         <p class="sub">新手最常卡住的操作與停車，用圖文一步步看，看不懂可以直接問。</p>
         <ol class="lane">
           <li class="code"><span class="who-tag">程式</span><div><p>雨刷、燈光、方向燈、啟動、排檔、加油、除霧、霧燈八類操作指南</p><p class="d">每頁下方的提問與手冊首頁走同一套 RAG 與拒答流程。</p></div></li>
@@ -462,7 +462,7 @@
         </ol>
       </div>
 
-      <div role="tabpanel" id="car-p-5" aria-labelledby="car-tab-5" hidden>
+      <div role="tabpanel" tabindex="0" id="car-p-5" aria-labelledby="car-tab-5" hidden>
         <p class="sub">展示能穩定，也要說得出為什麼可以信。</p>
         <ol class="lane">
           <li class="code"><span class="who-tag">程式</span><div><p>金鑰只放在 Mac 後端，手機拿不到</p><p class="d">Azure 金鑰存在 Mac 鑰匙圈；手機只拿到展示用 token。</p></div></li>
@@ -765,7 +765,7 @@
 document.querySelectorAll('[data-tabs]').forEach(box=>{
   const tabs=[...box.querySelectorAll('[role=tab]')];
   const show=t=>{tabs.forEach(x=>{const on=x===t;x.setAttribute('aria-selected',on);x.tabIndex=on?0:-1;document.getElementById(x.getAttribute('aria-controls')).hidden=!on;});};
-  tabs.forEach((t,i)=>{t.addEventListener('click',()=>show(t));t.addEventListener('keydown',e=>{let j=null;if(e.key==='ArrowRight')j=(i+1)%tabs.length;if(e.key==='ArrowLeft')j=(i-1+tabs.length)%tabs.length;if(j!==null){e.preventDefault();show(tabs[j]);tabs[j].focus();}});});
+  tabs.forEach((t,i)=>{t.addEventListener('click',()=>show(t));t.addEventListener('keydown',e=>{let j=null;if(e.key==='ArrowRight')j=(i+1)%tabs.length;if(e.key==='ArrowLeft')j=(i-1+tabs.length)%tabs.length;if(e.key==='Home')j=0;if(e.key==='End')j=tabs.length-1;if(j!==null){e.preventDefault();show(tabs[j]);tabs[j].focus();}});});
 });
 
 /* one view at a time: #home, #ins, #car, #kb, #qa, #diag, #edu (old links keep working) */
