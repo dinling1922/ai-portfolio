@@ -54,25 +54,52 @@
   .facts dd{margin:0;font-size:16px}
   .links{display:flex;flex-wrap:wrap;gap:12px;margin-top:20px}
 
-  /* ---------- index ---------- */
-  nav.index{padding:40px 0 8px}
-  nav.index h2{font-size:15px;font-weight:700;color:var(--muted);margin:0 0 6px}
-  .quick{margin:0 0 14px;font-size:16px}
-  nav.index ol{margin:0;padding:0;list-style:none;border-top:2px solid var(--ink)}
-  nav.index li a{display:grid;grid-template-columns:2.2em minmax(0,1fr) auto;gap:4px 16px;align-items:baseline;padding:16px 0;text-decoration:none;color:var(--ink);border-bottom:1px solid var(--line)}
-  nav.index li a:hover .t{text-decoration:underline}
-  nav.index .n{font-family:"Noto Serif TC",serif;font-weight:800;font-size:22px;color:var(--muted)}
-  nav.index .t{font-weight:700;font-size:18px}
-  nav.index .d{grid-column:2;color:var(--muted);font-size:15px;line-height:1.6}
-  nav.index .s{grid-column:3;grid-row:1;font-size:14px;color:var(--muted);white-space:nowrap;border:1px solid var(--line);border-radius:999px;padding:2px 12px}
-  nav.index .s.hot{background:var(--ink);border-color:var(--ink);color:#fff;font-weight:700}
-  @media (max-width:600px){
-    nav.index li a{grid-template-columns:2em minmax(0,1fr)}
-    nav.index .s{grid-column:2;grid-row:auto;justify-self:start;margin-top:4px}
-  }
+
+  [tabindex="-1"]:focus{outline:none}
+
+  /* ---------- top menu ---------- */
+  .topbar{position:sticky;top:0;z-index:20;background:rgba(252,252,250,.96);border-bottom:1px solid var(--line);backdrop-filter:blur(6px)}
+  .topbar ul{display:flex;gap:8px;margin:0 auto;padding:10px 28px;list-style:none;max-width:1100px;overflow-x:auto;white-space:nowrap;scrollbar-width:thin}
+  .topbar a{display:inline-flex;align-items:center;min-height:44px;padding:0 16px;border:1px solid var(--line);border-radius:999px;color:var(--muted);font-size:15px;font-weight:700;text-decoration:none;background:#fff}
+  .topbar a:hover{color:var(--ink);border-color:var(--ink)}
+  .topbar a[aria-current="page"]{background:var(--ink);border-color:var(--ink);color:#fff}
+  @media (max-width:600px){.topbar ul{padding:8px 16px}}
+
+  /* ---------- overview cards (all equal weight) ---------- */
+  .pick{padding:40px 0 8px}
+  .pick h2{font-family:"Noto Serif TC",serif;font-weight:800;font-size:clamp(22px,3vw,28px);margin:0 0 6px}
+  .pick .hint{margin:0 0 20px;color:var(--muted);font-size:16px}
+  .cards{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;margin:0;padding:0;list-style:none}
+  @media (max-width:700px){.cards{grid-template-columns:1fr}}
+  .cards a{display:grid;grid-template-columns:2em minmax(0,1fr);gap:6px 12px;height:100%;padding:20px;border:1px solid var(--line);border-radius:14px;background:#fff;color:var(--ink);text-decoration:none}
+  .cards a:hover{border-color:var(--ink)}
+  .cards .n{font-family:"Noto Serif TC",serif;font-weight:800;font-size:24px;line-height:1.2;color:var(--muted)}
+  .cards .t{font-weight:700;font-size:18px;line-height:1.5}
+  .cards .d{grid-column:2;color:var(--muted);font-size:15px;line-height:1.65}
+  .cards .s{grid-column:2;justify-self:start;font-size:13px;color:var(--muted);border:1px solid var(--line);border-radius:999px;padding:1px 10px;margin-top:4px}
+  .strip{display:block;margin-top:16px;padding:16px 20px;border:1px dashed var(--muted);border-radius:14px;color:var(--ink);text-decoration:none;font-size:16px}
+  .strip:hover{border-style:solid;border-color:var(--ink)}
+  .strip b{font-weight:700}
+  .legend{padding:32px 0 8px}
+  .legend .roles{margin:0 0 18px}
+
+  /* ---------- single-work view ---------- */
+  .back,.next{display:inline-flex;align-items:center;min-height:44px;font-weight:700;font-size:16px;color:var(--link);text-decoration:none}
+  .back:hover,.next:hover{text-decoration:underline}
+  .nextrow{display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px 20px;margin-top:40px;padding-top:16px;border-top:1px solid var(--line)}
+
+  /* ---------- course ---------- */
+  .curr{margin:0 0 28px;padding:0;list-style:none;border-top:2px solid var(--ink)}
+  .curr li{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:2px 16px;padding:14px 0;border-bottom:1px solid var(--line)}
+  .curr b{font-weight:700}
+  .curr .h{font-size:14px;color:var(--muted);white-space:nowrap}
+  .curr .d{grid-column:1 / -1;font-size:15px;color:var(--muted);line-height:1.65}
+  .cgroup{margin:0 0 6px;font-size:18px;font-weight:700;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+  .cgroup span{font-size:15px;font-weight:500;color:var(--muted)}
+  .course-wrap{max-width:760px}
 
   /* ---------- work ---------- */
-  section.work{padding:64px 0;border-bottom:1px solid var(--line);scroll-margin-top:12px}
+  section.work{padding:24px 0 56px}
   .work-head{display:flex;gap:20px;align-items:flex-start;margin-bottom:28px}
   .num{font-family:"Noto Serif TC",serif;font-weight:800;font-size:56px;line-height:1;color:var(--line);min-width:1.1em}
   .work h2{font-family:"Noto Serif TC",serif;font-weight:800;font-size:clamp(24px,3vw,32px);line-height:1.35;margin:0 0 6px}
@@ -140,6 +167,23 @@
 </head>
 <body>
 
+<div class="topbar-wrap">
+<nav class="topbar" aria-label="作品選單">
+  <ul>
+    <li><a href="#home" data-go="home">總覽</a></li>
+    <li><a href="#ins" data-go="ins">好險有你</a></li>
+    <li><a href="#car" data-go="car">新手 AI 副駕</a></li>
+    <li><a href="#kb" data-go="kb">客服知識庫</a></li>
+    <li><a href="#qa" data-go="qa">QA 評分</a></li>
+    <li><a href="#diag" data-go="diag">AI 導入診斷</a></li>
+    <li><a href="#edu" data-go="edu">教材產生器</a></li>
+    <li><a href="#course" data-go="course">職訓課程</a></li>
+  </ul>
+</nav>
+</div>
+
+<main>
+<div data-view="home" id="home">
 <header class="hero">
   <div class="wrap">
     <p class="who"><strong>趙翊君（Lala）</strong>｜AI 解決方案顧問・企業 AI 導入與培訓</p>
@@ -152,218 +196,49 @@
       </div>
       <dl class="facts">
         <div><dt>經歷</dt><dd>客服、金融、保險理賠、企業培訓，<span style="white-space:nowrap">共 13 年</span></dd></div>
-        <div><dt>學習中</dt><dd>緯育 TibaMe 商務 AI 應用開發人才養成班（12/3 結訓）</dd></div>
+        <div><dt>學習中</dt><dd>緯育 TibaMe 商務 AI 應用開發人才養成班（職訓課程，12/3 結訓）。<a href="#course">課程內容</a></dd></div>
         <div><dt>工具</dt><dd>Dify、Lovable、Azure AI、Gemini、Flutter，並用 Codex 協作開發</dd></div>
         <div><dt>目標</dt><dd>AI 解決方案顧問、售前顧問、企業 AI 導入與培訓</dd></div>
       </dl>
     </div>
-
-    <ul class="roles" aria-label="流程說明中的三種角色">
-      <li class="r-ai"><b>AI</b>理解、判斷、產生文字</li>
-      <li class="r-code"><b>程式</b>規則、計算、檢查、存檔</li>
-      <li class="r-human"><b>人</b>輸入、確認、做最後決定</li>
-    </ul>
-    <p class="lead">下面每個作品都標出：你按下按鈕之後，每一步由 AI、程式還是人負責。所有範例都是虛構資料；作品使用免費的 Gemini 模型，如果出現「模型忙碌」的提示，等幾秒再送一次即可。</p>
     <div class="links">
-      <a class="btn primary" href="kb-live.html">先看 AI 即時在做什麼</a>
       <a class="btn ghost" href="https://github.com/dinling1922" target="_blank" rel="noopener">GitHub：dinling1922</a>
     </div>
   </div>
 </header>
 
-<main class="wrap">
-  <nav class="index" aria-labelledby="idx">
-    <h2 id="idx">六個作品，建議依序瀏覽</h2>
-    <p class="quick">只有兩分鐘？先看 1 的即時執行過程，再看 6 的展示影片。</p>
-    <ol>
-      <li><a href="#kb"><span class="n">1</span><span class="t">Dify 客服知識庫</span><span class="s hot">即時執行過程</span><span class="d">客服新人用一般說法提問，得到依公司 SOP 整理的處理步驟，並看到答案出自哪份文件。</span></a></li>
-      <li><a href="#qa"><span class="n">2</span><span class="t">客服 QA 評分與培訓建議</span><span class="s">可試用</span><span class="d">主管貼上一段客服對話，得到四個面向的分數、有逐字稿依據的評語與培訓建議。</span></a></li>
-      <li><a href="#diag"><span class="n">3</span><span class="t">企業 AI 導入診斷</span><span class="s">可試用</span><span class="d">填一份部門流程資訊，得到哪些環節適合導入 AI、先做哪個、哪裡需要人工把關。</span></a></li>
-      <li><a href="#edu"><span class="n">4</span><span class="t">AI 教材產生器</span><span class="s">可試用</span><span class="d">把口語的訓練錄音逐字稿，整理成新人看得懂的教材、測驗題和簡報大綱。</span></a></li>
-      <li><a href="#ins"><span class="n">5</span><span class="t">好險有你｜旅遊保險 AI 平台</span><span class="s">團隊專題</span><span class="d">7 人團隊作品：推薦與比較旅平險、整理理賠待辦與文件。我負責理賠文件辨識與條文驗證工具。</span></a></li>
-      <li><a href="#car"><span class="n">6</span><span class="t">新手 AI 副駕</span><span class="s">影片</span><span class="d">個人專題的 iOS App：用語音問車主手冊、事故時一步步帶完安全流程，已在實體 iPhone 展示。</span></a></li>
-    </ol>
-  </nav>
+<div class="wrap">
+  <section class="pick" aria-labelledby="pick-t">
+    <h2 id="pick-t">六個作品，挑你有興趣的點進去</h2>
+    <p class="hint">也可以用上方選單切換。每個作品都有自己的頁面。</p>
+    <ul class="cards">
+      <li><a href="#ins"><span class="n">1</span><span class="t">好險有你｜旅遊保險 AI 平台</span><span class="d">7 人團隊作品：推薦與比較旅平險、整理理賠待辦與文件。我負責理賠文件辨識與條文驗證工具。</span><span class="s">團隊專題</span></a></li>
+      <li><a href="#car"><span class="n">2</span><span class="t">新手 AI 副駕</span><span class="d">iOS App：用語音問車主手冊、事故時一步步帶完安全流程，已在實體 iPhone 展示。</span><span class="s">個人專題</span></a></li>
+      <li><a href="#kb"><span class="n">3</span><span class="t">Dify 客服知識庫</span><span class="d">客服新人用一般說法提問，得到依公司 SOP 整理的處理步驟，並看到答案出自哪份文件。</span><span class="s">可試用</span></a></li>
+      <li><a href="#qa"><span class="n">4</span><span class="t">客服 QA 評分與培訓建議</span><span class="d">主管貼上一段客服對話，得到四個面向的分數、有逐字稿依據的評語與培訓建議。</span><span class="s">可試用</span></a></li>
+      <li><a href="#diag"><span class="n">5</span><span class="t">企業 AI 導入診斷</span><span class="d">填一份部門流程資訊，得到哪些環節適合導入 AI、先做哪個、哪裡需要人工把關。</span><span class="s">可試用</span></a></li>
+      <li><a href="#edu"><span class="n">6</span><span class="t">AI 教材產生器</span><span class="d">把口語的訓練錄音逐字稿，整理成新人看得懂的教材、測驗題和簡報大綱。</span><span class="s">可試用</span></a></li>
+    </ul>
+    <a class="strip" href="#course"><b>職訓課程</b>｜緯育 TibaMe 商務 AI 應用開發人才養成班：22 個單元、338 小時，看課程內容 →</a>
+  </section>
 
-  <!-- 1 -->
-  <section class="work" id="kb" aria-labelledby="kb-t">
+  <section class="legend" aria-label="如何閱讀作品頁">
+    <ul class="roles" aria-label="流程說明中的三種角色">
+      <li class="r-ai"><b>AI</b>理解、判斷、產生文字</li>
+      <li class="r-code"><b>程式</b>規則、計算、檢查、存檔</li>
+      <li class="r-human"><b>人</b>輸入、確認、做最後決定</li>
+    </ul>
+    <p class="lead">每個作品頁都標出：你按下按鈕之後，每一步由 AI、程式還是人負責。所有範例都是虛構資料；可試用的作品使用免費的 Gemini 模型，如果出現「模型忙碌」的提示，等幾秒再送一次即可。</p>
+  </section>
+</div>
+</div>
+
+<div class="wrap">
+
+  <section class="work wide" id="ins" data-view="ins" aria-labelledby="ins-t">
+    <a class="back" href="#home">← 回作品總覽</a>
     <div class="work-head">
       <span class="num" aria-hidden="true">1</span>
-      <div>
-        <h2 id="kb-t">Dify 客服知識庫</h2>
-        <p class="what">客服新人遇到問題時，用一般說法提問，就能得到依公司 SOP 整理好的處理步驟，並看到答案出自哪份文件。</p>
-      </div>
-    </div>
-    <div class="grid">
-      <div class="try">
-        <h3>怎麼試用</h3>
-        <ol class="steps">
-          <li>按「看 AI 即時執行過程」，點任一個範例問題。</li>
-          <li>左邊是回答，右邊即時顯示這次從 SOP 取回哪幾段、相似度、使用的模型與每一步花的時間。</li>
-          <li>「查訂單」和「員工旅遊補助」兩個範例，示範它遇到做不到或查不到的事時怎麼回答。</li>
-        </ol>
-        <div class="actions">
-          <a class="btn primary" href="kb-live.html">看 AI 即時執行過程</a>
-          <a class="btn ghost" href="https://udify.app/chat/xilWeGjJc5hgvfVH" target="_blank" rel="noopener">開啟 Dify 原始介面</a>
-        </div>
-        <ul class="tags" aria-label="使用技術">
-          <li>Dify Chatflow</li><li>Dify API 串流事件</li><li>Cloudflare Workers 中繼站</li><li>RAG 知識庫檢索</li><li>gemini-embedding-001</li><li>Gemini 3.1 Flash-Lite</li><li>引用來源</li><li>失敗自動重試</li>
-        </ul>
-      </div>
-      <div class="flow">
-        <h3>按下範例問題之後</h3>
-        <p class="sub">流程說明（不是即時畫面）</p>
-        <ol class="lane">
-          <li class="human"><span class="who-tag">人</span><div><p>客服新人提出問題</p><p class="d">例如：信用卡付款、還沒出貨，要確認哪些資訊？</p></div></li>
-          <li class="code"><span class="who-tag">程式</span><div><p>到知識庫找出最相關的 3 段 SOP</p><p class="d">問題先轉成向量，再和 SOP 段落比對相似度。</p></div></li>
-          <li class="ai"><span class="who-tag">AI</span><div><p>只根據這 3 段內容回答</p><p class="d">規則：查不到就說找不到、不能假裝查詢真實訂單、以「客服該怎麼做」的角度回答。</p></div></li>
-          <li class="code"><span class="who-tag">程式</span><div><p>附上引用的文件名稱</p><p class="d">模型忙碌時自動重試 3 次，仍失敗就顯示提示。</p></div></li>
-          <li class="human"><span class="who-tag">人</span><div><p>客服依步驟處理</p><p class="d">對顧客的承諾仍由客服本人決定。</p></div></li>
-        </ol>
-      </div>
-    </div>
-    <details>
-      <summary>設計考量</summary>
-      <ul>
-        <li><b>可驗證：</b>以固定測試題檢查回答，發現 SOP 被切成平均 16 字的短段落，導致漏答確認清單；調整段落後重測，回答完整並附上引用來源。</li>
-        <li><b>資料安全：</b>只依 SOP 回答，查不到就說找不到，也不假裝能查詢真實訂單。</li>
-        <li><b>維護成本：</b>使用 Gemini 免費方案；SOP 更新時只要替換知識庫文件，不必改程式。</li>
-      </ul>
-    </details>
-  </section>
-
-  <!-- 2 -->
-  <section class="work" id="qa" aria-labelledby="qa-t">
-    <div class="work-head">
-      <span class="num" aria-hidden="true">2</span>
-      <div>
-        <h2 id="qa-t">客服 QA 評分與培訓建議</h2>
-        <p class="what">主管貼上一段客服對話，就能得到四個面向的分數、有逐字稿依據的評語，以及下一步的培訓建議。</p>
-      </div>
-    </div>
-    <div class="grid">
-      <div class="try">
-        <h3>怎麼試用</h3>
-        <ol class="steps">
-          <li>開啟作品，按「帶入虛構範例」。</li>
-          <li>可以先修改對話內容，再按「開始評分」。</li>
-          <li>往下捲動，看分數、評語與 AI 培訓建議報告。</li>
-        </ol>
-        <div class="actions">
-          <a class="btn primary" href="https://smart-agent-score.lovable.app/" target="_blank" rel="noopener">開啟 QA 評分</a>
-        </div>
-        <ul class="tags" aria-label="使用技術">
-          <li>Lovable</li><li>React</li><li>TanStack Start 伺服器函式</li><li>Zod 格式驗證</li><li>Gemini 3.1 Flash-Lite</li>
-        </ul>
-      </div>
-      <div class="flow">
-        <h3>按下「開始評分」之後</h3>
-        <p class="sub">流程說明（不是即時畫面）</p>
-        <ol class="lane">
-          <li class="human"><span class="who-tag">人</span><div><p>主管貼上客服逐字稿</p><p class="d">範例對話標示為虛構，不代表真實績效。</p></div></li>
-          <li class="code"><span class="who-tag">程式</span><div><p>在伺服器端呼叫 Gemini</p><p class="d">API 金鑰只存在伺服器，不會出現在網頁裡。</p></div></li>
-          <li class="ai"><span class="who-tag">AI</span><div><p>依四個面向各給 0–25 分，寫評語與培訓建議</p><p class="d">每一點都要引用逐字稿原句，禁止空泛形容詞。</p></div></li>
-          <li class="code"><span class="who-tag">程式</span><div><p>檢查回傳格式，再由程式加總總分</p><p class="d">格式不對就停止並顯示原因，不自動換模型。</p></div></li>
-          <li class="human"><span class="who-tag">人</span><div><p>主管依建議安排複訓</p><p class="d">分數是討論起點，不直接作為考核。</p></div></li>
-        </ol>
-      </div>
-    </div>
-    <details>
-      <summary>設計考量</summary>
-      <ul>
-        <li><b>可驗證：</b>評語與培訓建議必須引用逐字稿原句；總分由程式加總，不交給 AI 計算。</li>
-        <li><b>資料安全：</b>只使用虛構逐字稿並標示「非正式績效」；API 金鑰存放在伺服器端。</li>
-        <li><b>維護成本：</b>直接呼叫 Gemini 免費方案，不經過付費的 AI 閘道。</li>
-      </ul>
-    </details>
-  </section>
-
-  <!-- 3 -->
-  <section class="work" id="diag" aria-labelledby="diag-t">
-    <div class="work-head">
-      <span class="num" aria-hidden="true">3</span>
-      <div>
-        <h2 id="diag-t">企業 AI 導入診斷</h2>
-        <p class="what">企業還不確定 AI 能做什麼時，先填一份部門流程資訊，就能得到哪些環節適合導入、先做哪個、哪裡需要人工把關的初步報告。</p>
-      </div>
-    </div>
-    <div class="grid">
-      <div class="try">
-        <h3>怎麼試用</h3>
-        <ol class="steps">
-          <li>開啟作品，企業流程資訊已預先填好一份虛構的客服 QA 流程。</li>
-          <li>按「開始對話」。</li>
-          <li>點範例問題「請根據我填的企業流程資訊，幫我做 AI 導入診斷」。</li>
-        </ol>
-        <div class="actions">
-          <a class="btn primary" href="https://udify.app/chat/iRZRYANPM8KwhKzg" target="_blank" rel="noopener">開啟導入診斷</a>
-        </div>
-        <ul class="tags" aria-label="使用技術">
-          <li>Dify Chatflow</li><li>顧問式 Prompt 規則</li><li>Gemini 3.1 Flash-Lite</li><li>Python 多 Agent 版本</li>
-        </ul>
-      </div>
-      <div class="flow">
-        <h3>按下範例問題之後</h3>
-        <p class="sub">流程說明（不是即時畫面）</p>
-        <ol class="lane">
-          <li class="human"><span class="who-tag">人</span><div><p>填寫部門、流程、頻率、耗時與資料限制</p><p class="d">範例：每週 20 份對話、每份 15 分鐘。</p></div></li>
-          <li class="ai"><span class="who-tag">AI</span><div><p>先分析流程，再判斷可以交給 AI 的環節</p><p class="d">規則：不保證投資報酬、只用輸入的工時粗估、資訊不足就標示「需要補充」。</p></div></li>
-          <li class="ai"><span class="who-tag">AI</span><div><p>產出十段式報告</p><p class="d">痛點、可介入環節、短中長期順序、工時粗估、風險、第一版範圍、培訓建議。</p></div></li>
-          <li class="code"><span class="who-tag">程式</span><div><p>模型忙碌時自動重試</p><p class="d">重試 3 次仍失敗，就顯示提示。</p></div></li>
-          <li class="human"><span class="who-tag">人</span><div><p>主管與顧問討論後決定導入順序</p><p class="d">報告中標示需要人工複核的環節。</p></div></li>
-        </ol>
-      </div>
-    </div>
-    <details>
-      <summary>設計考量</summary>
-      <ul>
-        <li><b>可驗證：</b>另以 Python 串接診斷、方案、培訓規劃三個 Agent 實測。第一次測試時，模型自行寫出「節省 60%」等輸入沒有提供的成效；加入證據限制規則後重測，報告改為只依使用者提供的工時粗估。</li>
-        <li><b>資料安全：</b>範例只使用虛構企業資料，報告中須標示需要人工複核的環節。</li>
-        <li><b>維護成本：</b>改用 Gemini 免費方案，讓作品能長期公開試用而不產生費用。</li>
-      </ul>
-    </details>
-  </section>
-
-  <!-- 4 -->
-  <section class="work" id="edu" aria-labelledby="edu-t">
-    <div class="work-head">
-      <span class="num" aria-hidden="true">4</span>
-      <div>
-        <h2 id="edu-t">AI 教材產生器</h2>
-        <p class="what">把一段口語的訓練錄音逐字稿，整理成新人看得懂的教材、測驗題和簡報大綱。</p>
-      </div>
-    </div>
-    <div class="grid">
-      <div class="try">
-        <h3>怎麼試用</h3>
-        <ol class="steps">
-          <li>開啟作品，輸入框已預先填好一段虛構的退款訓練逐字稿。</li>
-          <li>可以修改內容，再按「執行」。</li>
-        </ol>
-        <p class="note">這個作品沒有自動重試；如果出現模型忙碌的提示，再按一次「執行」。</p>
-        <div class="actions">
-          <a class="btn primary" href="https://udify.app/completion/eHkV3p2p4VUYDn3w" target="_blank" rel="noopener">開啟教材產生器</a>
-        </div>
-        <ul class="tags" aria-label="使用技術">
-          <li>Dify 文字產生應用</li><li>Prompt 設計</li><li>Gemini 3.1 Flash-Lite</li>
-        </ul>
-      </div>
-      <div class="flow">
-        <h3>按下「執行」之後</h3>
-        <p class="sub">流程說明（不是即時畫面）</p>
-        <ol class="lane">
-          <li class="human"><span class="who-tag">人</span><div><p>培訓人員貼上訓練逐字稿</p><p class="d">逐字稿常有贅字、重複和跳躍的口語內容。</p></div></li>
-          <li class="ai"><span class="who-tag">AI</span><div><p>清理口語、整理成教材</p><p class="d">輸出教材重點、5 題測驗與簡報大綱。</p></div></li>
-          <li class="human"><span class="who-tag">人</span><div><p>培訓人員審稿後使用</p><p class="d">AI 產出是初稿，內容正確性由人確認。</p></div></li>
-        </ol>
-      </div>
-    </div>
-  </section>
-
-  <!-- 5 -->
-  <section class="work wide" id="ins" aria-labelledby="ins-t">
-    <div class="work-head">
-      <span class="num" aria-hidden="true">5</span>
       <div>
         <h2 id="ins-t">好險有你｜旅遊保險 AI Agent 平台</h2>
         <p class="what">7 人團隊專題。出發前，從 5 家保險公司的旅平險中推薦並比較方案、依條款回答問題；出事後，整理可能適用的理賠項目、待辦與應備文件，檢查上傳的文件，再協助用旅客自己的 Gmail 送件。系統由 7 個 Agent 分工。</p>
@@ -468,12 +343,16 @@
         <li><b>維護成本：</b>條文先經驗證才入庫，條款改版時可回查差異；團隊原則是保費、保額等數字一律由程式計算，LLM 不產生數字。</li>
       </ul>
     </details>
+      <div class="nextrow">
+      <a class="back" href="#home">← 回作品總覽</a>
+      <a class="next" href="#car">下一個作品：新手 AI 副駕 →</a>
+    </div>
   </section>
 
-  <!-- 6 -->
-  <section class="work wide" id="car" aria-labelledby="car-t">
+  <section class="work wide" id="car" data-view="car" aria-labelledby="car-t">
+    <a class="back" href="#home">← 回作品總覽</a>
     <div class="work-head">
-      <span class="num" aria-hidden="true">6</span>
+      <span class="num" aria-hidden="true">2</span>
       <div>
         <h2 id="car-t">新手 AI 副駕</h2>
         <p class="what">個人專題，Flutter iOS App，已在實體 iPhone 上展示。陪新手獨自上路：用語音問車主手冊並附上手冊頁碼；出事時用語音一步步帶完安全流程；導航、停車與出發前檢查也都在同一個 App。</p>
@@ -558,8 +437,255 @@
         <p class="proof">目前限制：後端跑在 Mac 上，手機需在同一網路；未做雲端部署、帳號與多車型。</p>
       </div>
     </div>
+      <div class="nextrow">
+      <a class="back" href="#home">← 回作品總覽</a>
+      <a class="next" href="#kb">下一個作品：Dify 客服知識庫 →</a>
+    </div>
   </section>
 
+  <section class="work" id="kb" data-view="kb" aria-labelledby="kb-t">
+    <a class="back" href="#home">← 回作品總覽</a>
+    <div class="work-head">
+      <span class="num" aria-hidden="true">3</span>
+      <div>
+        <h2 id="kb-t">Dify 客服知識庫</h2>
+        <p class="what">客服新人遇到問題時，用一般說法提問，就能得到依公司 SOP 整理好的處理步驟，並看到答案出自哪份文件。</p>
+      </div>
+    </div>
+    <div class="grid">
+      <div class="try">
+        <h3>怎麼試用</h3>
+        <ol class="steps">
+          <li>按「看 AI 即時執行過程」，點任一個範例問題。</li>
+          <li>左邊是回答，右邊即時顯示這次從 SOP 取回哪幾段、相似度、使用的模型與每一步花的時間。</li>
+          <li>「查訂單」和「員工旅遊補助」兩個範例，示範它遇到做不到或查不到的事時怎麼回答。</li>
+        </ol>
+        <div class="actions">
+          <a class="btn primary" href="kb-live.html">看 AI 即時執行過程</a>
+          <a class="btn ghost" href="https://udify.app/chat/xilWeGjJc5hgvfVH" target="_blank" rel="noopener">開啟 Dify 原始介面</a>
+        </div>
+        <ul class="tags" aria-label="使用技術">
+          <li>Dify Chatflow</li><li>Dify API 串流事件</li><li>Cloudflare Workers 中繼站</li><li>RAG 知識庫檢索</li><li>gemini-embedding-001</li><li>Gemini 3.1 Flash-Lite</li><li>引用來源</li><li>失敗自動重試</li>
+        </ul>
+      </div>
+      <div class="flow">
+        <h3>按下範例問題之後</h3>
+        <p class="sub">流程說明（不是即時畫面）</p>
+        <ol class="lane">
+          <li class="human"><span class="who-tag">人</span><div><p>客服新人提出問題</p><p class="d">例如：信用卡付款、還沒出貨，要確認哪些資訊？</p></div></li>
+          <li class="code"><span class="who-tag">程式</span><div><p>到知識庫找出最相關的 3 段 SOP</p><p class="d">問題先轉成向量，再和 SOP 段落比對相似度。</p></div></li>
+          <li class="ai"><span class="who-tag">AI</span><div><p>只根據這 3 段內容回答</p><p class="d">規則：查不到就說找不到、不能假裝查詢真實訂單、以「客服該怎麼做」的角度回答。</p></div></li>
+          <li class="code"><span class="who-tag">程式</span><div><p>附上引用的文件名稱</p><p class="d">模型忙碌時自動重試 3 次，仍失敗就顯示提示。</p></div></li>
+          <li class="human"><span class="who-tag">人</span><div><p>客服依步驟處理</p><p class="d">對顧客的承諾仍由客服本人決定。</p></div></li>
+        </ol>
+      </div>
+    </div>
+    <details>
+      <summary>設計考量</summary>
+      <ul>
+        <li><b>可驗證：</b>以固定測試題檢查回答，發現 SOP 被切成平均 16 字的短段落，導致漏答確認清單；調整段落後重測，回答完整並附上引用來源。</li>
+        <li><b>資料安全：</b>只依 SOP 回答，查不到就說找不到，也不假裝能查詢真實訂單。</li>
+        <li><b>維護成本：</b>使用 Gemini 免費方案；SOP 更新時只要替換知識庫文件，不必改程式。</li>
+      </ul>
+    </details>
+      <div class="nextrow">
+      <a class="back" href="#home">← 回作品總覽</a>
+      <a class="next" href="#qa">下一個作品：客服 QA 評分 →</a>
+    </div>
+  </section>
+
+  <section class="work" id="qa" data-view="qa" aria-labelledby="qa-t">
+    <a class="back" href="#home">← 回作品總覽</a>
+    <div class="work-head">
+      <span class="num" aria-hidden="true">4</span>
+      <div>
+        <h2 id="qa-t">客服 QA 評分與培訓建議</h2>
+        <p class="what">主管貼上一段客服對話，就能得到四個面向的分數、有逐字稿依據的評語，以及下一步的培訓建議。</p>
+      </div>
+    </div>
+    <div class="grid">
+      <div class="try">
+        <h3>怎麼試用</h3>
+        <ol class="steps">
+          <li>開啟作品，按「帶入虛構範例」。</li>
+          <li>可以先修改對話內容，再按「開始評分」。</li>
+          <li>往下捲動，看分數、評語與 AI 培訓建議報告。</li>
+        </ol>
+        <div class="actions">
+          <a class="btn primary" href="https://smart-agent-score.lovable.app/" target="_blank" rel="noopener">開啟 QA 評分</a>
+        </div>
+        <ul class="tags" aria-label="使用技術">
+          <li>Lovable</li><li>React</li><li>TanStack Start 伺服器函式</li><li>Zod 格式驗證</li><li>Gemini 3.1 Flash-Lite</li>
+        </ul>
+      </div>
+      <div class="flow">
+        <h3>按下「開始評分」之後</h3>
+        <p class="sub">流程說明（不是即時畫面）</p>
+        <ol class="lane">
+          <li class="human"><span class="who-tag">人</span><div><p>主管貼上客服逐字稿</p><p class="d">範例對話標示為虛構，不代表真實績效。</p></div></li>
+          <li class="code"><span class="who-tag">程式</span><div><p>在伺服器端呼叫 Gemini</p><p class="d">API 金鑰只存在伺服器，不會出現在網頁裡。</p></div></li>
+          <li class="ai"><span class="who-tag">AI</span><div><p>依四個面向各給 0–25 分，寫評語與培訓建議</p><p class="d">每一點都要引用逐字稿原句，禁止空泛形容詞。</p></div></li>
+          <li class="code"><span class="who-tag">程式</span><div><p>檢查回傳格式，再由程式加總總分</p><p class="d">格式不對就停止並顯示原因，不自動換模型。</p></div></li>
+          <li class="human"><span class="who-tag">人</span><div><p>主管依建議安排複訓</p><p class="d">分數是討論起點，不直接作為考核。</p></div></li>
+        </ol>
+      </div>
+    </div>
+    <details>
+      <summary>設計考量</summary>
+      <ul>
+        <li><b>可驗證：</b>評語與培訓建議必須引用逐字稿原句；總分由程式加總，不交給 AI 計算。</li>
+        <li><b>資料安全：</b>只使用虛構逐字稿並標示「非正式績效」；API 金鑰存放在伺服器端。</li>
+        <li><b>維護成本：</b>直接呼叫 Gemini 免費方案，不經過付費的 AI 閘道。</li>
+      </ul>
+    </details>
+      <div class="nextrow">
+      <a class="back" href="#home">← 回作品總覽</a>
+      <a class="next" href="#diag">下一個作品：企業 AI 導入診斷 →</a>
+    </div>
+  </section>
+
+  <section class="work" id="diag" data-view="diag" aria-labelledby="diag-t">
+    <a class="back" href="#home">← 回作品總覽</a>
+    <div class="work-head">
+      <span class="num" aria-hidden="true">5</span>
+      <div>
+        <h2 id="diag-t">企業 AI 導入診斷</h2>
+        <p class="what">企業還不確定 AI 能做什麼時，先填一份部門流程資訊，就能得到哪些環節適合導入、先做哪個、哪裡需要人工把關的初步報告。</p>
+      </div>
+    </div>
+    <div class="grid">
+      <div class="try">
+        <h3>怎麼試用</h3>
+        <ol class="steps">
+          <li>開啟作品，企業流程資訊已預先填好一份虛構的客服 QA 流程。</li>
+          <li>按「開始對話」。</li>
+          <li>點範例問題「請根據我填的企業流程資訊，幫我做 AI 導入診斷」。</li>
+        </ol>
+        <div class="actions">
+          <a class="btn primary" href="https://udify.app/chat/iRZRYANPM8KwhKzg" target="_blank" rel="noopener">開啟導入診斷</a>
+        </div>
+        <ul class="tags" aria-label="使用技術">
+          <li>Dify Chatflow</li><li>顧問式 Prompt 規則</li><li>Gemini 3.1 Flash-Lite</li><li>Python 多 Agent 版本</li>
+        </ul>
+      </div>
+      <div class="flow">
+        <h3>按下範例問題之後</h3>
+        <p class="sub">流程說明（不是即時畫面）</p>
+        <ol class="lane">
+          <li class="human"><span class="who-tag">人</span><div><p>填寫部門、流程、頻率、耗時與資料限制</p><p class="d">範例：每週 20 份對話、每份 15 分鐘。</p></div></li>
+          <li class="ai"><span class="who-tag">AI</span><div><p>先分析流程，再判斷可以交給 AI 的環節</p><p class="d">規則：不保證投資報酬、只用輸入的工時粗估、資訊不足就標示「需要補充」。</p></div></li>
+          <li class="ai"><span class="who-tag">AI</span><div><p>產出十段式報告</p><p class="d">痛點、可介入環節、短中長期順序、工時粗估、風險、第一版範圍、培訓建議。</p></div></li>
+          <li class="code"><span class="who-tag">程式</span><div><p>模型忙碌時自動重試</p><p class="d">重試 3 次仍失敗，就顯示提示。</p></div></li>
+          <li class="human"><span class="who-tag">人</span><div><p>主管與顧問討論後決定導入順序</p><p class="d">報告中標示需要人工複核的環節。</p></div></li>
+        </ol>
+      </div>
+    </div>
+    <details>
+      <summary>設計考量</summary>
+      <ul>
+        <li><b>可驗證：</b>另以 Python 串接診斷、方案、培訓規劃三個 Agent 實測。第一次測試時，模型自行寫出「節省 60%」等輸入沒有提供的成效；加入證據限制規則後重測，報告改為只依使用者提供的工時粗估。</li>
+        <li><b>資料安全：</b>範例只使用虛構企業資料，報告中須標示需要人工複核的環節。</li>
+        <li><b>維護成本：</b>改用 Gemini 免費方案，讓作品能長期公開試用而不產生費用。</li>
+      </ul>
+    </details>
+      <div class="nextrow">
+      <a class="back" href="#home">← 回作品總覽</a>
+      <a class="next" href="#edu">下一個作品：AI 教材產生器 →</a>
+    </div>
+  </section>
+
+  <section class="work" id="edu" data-view="edu" aria-labelledby="edu-t">
+    <a class="back" href="#home">← 回作品總覽</a>
+    <div class="work-head">
+      <span class="num" aria-hidden="true">6</span>
+      <div>
+        <h2 id="edu-t">AI 教材產生器</h2>
+        <p class="what">把一段口語的訓練錄音逐字稿，整理成新人看得懂的教材、測驗題和簡報大綱。</p>
+      </div>
+    </div>
+    <div class="grid">
+      <div class="try">
+        <h3>怎麼試用</h3>
+        <ol class="steps">
+          <li>開啟作品，輸入框已預先填好一段虛構的退款訓練逐字稿。</li>
+          <li>可以修改內容，再按「執行」。</li>
+        </ol>
+        <p class="note">這個作品沒有自動重試；如果出現模型忙碌的提示，再按一次「執行」。</p>
+        <div class="actions">
+          <a class="btn primary" href="https://udify.app/completion/eHkV3p2p4VUYDn3w" target="_blank" rel="noopener">開啟教材產生器</a>
+        </div>
+        <ul class="tags" aria-label="使用技術">
+          <li>Dify 文字產生應用</li><li>Prompt 設計</li><li>Gemini 3.1 Flash-Lite</li>
+        </ul>
+      </div>
+      <div class="flow">
+        <h3>按下「執行」之後</h3>
+        <p class="sub">流程說明（不是即時畫面）</p>
+        <ol class="lane">
+          <li class="human"><span class="who-tag">人</span><div><p>培訓人員貼上訓練逐字稿</p><p class="d">逐字稿常有贅字、重複和跳躍的口語內容。</p></div></li>
+          <li class="ai"><span class="who-tag">AI</span><div><p>清理口語、整理成教材</p><p class="d">輸出教材重點、5 題測驗與簡報大綱。</p></div></li>
+          <li class="human"><span class="who-tag">人</span><div><p>培訓人員審稿後使用</p><p class="d">AI 產出是初稿，內容正確性由人確認。</p></div></li>
+        </ol>
+      </div>
+    </div>
+      <div class="nextrow">
+      <a class="back" href="#home">← 回作品總覽</a>
+      <a class="next" href="#course">接著看：職訓課程 →</a>
+    </div>
+  </section>
+
+  <section class="work" id="course" data-view="course" aria-labelledby="course-t">
+    <a class="back" href="#home">← 回作品總覽</a>
+    <div class="work-head">
+      <div>
+        <h2 id="course-t">職訓課程：緯育 TibaMe 商務 AI 應用開發人才養成班</h2>
+        <p class="what">職訓課程（第 02 期），共 22 個單元、338 小時，2026/12/3 結訓。以下依課程大綱整理；我實際做出來的成果，請看其他作品頁。</p>
+      </div>
+    </div>
+    <div class="course-wrap">
+      <h3 class="cgroup">AI 及雲端技術<span>110 小時</span></h3>
+      <ul class="curr">
+        <li><b>NLP 開發實務</b><span class="h">30 小時</span><span class="d">文字情緒分析分類、文字轉語音、語音轉文字</span></li>
+        <li><b>LLM 開發實務</b><span class="h">30 小時</span><span class="d">客戶服務回饋機器人、以圖生文與文生圖、大型語言模型識圖</span></li>
+        <li><b>雲端資料庫入門</b><span class="h">18 小時</span><span class="d">Azure Database for MySQL、NoSQL 資料庫、Azure 資料庫建置</span></li>
+        <li><b>AI 前端開發實務</b><span class="h">12 小時</span><span class="d">視窗應用程式、Gradio Web 應用程式、LINE Bot</span></li>
+        <li><b>雲端平台 AI 應用實務</b><span class="h">12 小時</span><span class="d">Azure AI Services、Azure AI 語言與語音、Azure OpenAI、機器學習與責任 AI</span></li>
+        <li><b>NVIDIA DLI 官方課程：使用提示詞打造 LLM 應用服務</b><span class="h">8 小時</span><span class="d">Prompt Engineering、NVIDIA LLM NIM、用 Llama 3.1 部署 LLM 應用</span></li>
+      </ul>
+
+      <h3 class="cgroup">系統與軟體開發<span>102 小時</span></h3>
+      <ul class="curr">
+        <li><b>系統分析實務</b><span class="h">24 小時</span><span class="d">系統分析師的職責、UML 建模、需求拆解、流程建模、功能規格案例</span></li>
+        <li><b>SDD × Vibe Coding 實戰</b><span class="h">18 小時</span><span class="d">Gemini CLI、GitHub Copilot、Claude Code、Spec Driven Development</span></li>
+        <li><b>Git 與 GitHub</b><span class="h">12 小時</span><span class="d">版本控制的追蹤、回溯、協作與審查</span></li>
+        <li><b>Python 程式設計</b><span class="h">24 小時</span><span class="d">資料型態、流程控制、函式、模組與套件、虛擬環境</span></li>
+        <li><b>AI 應用開發與部署</b><span class="h">24 小時</span><span class="d">模組化與交付設計、容錯與防駭設計、AWS VM 部署、WSGI、Docker、AWS 容器化部署</span></li>
+      </ul>
+
+      <h3 class="cgroup">商務、求職及專案管理<span>58 小時</span></h3>
+      <ul class="curr">
+        <li><b>AI 概論與商務應用</b><span class="h">18 小時</span><span class="d">生成式 AI 工具、提示工程、AI 輔助資訊蒐集、簡報、圖像與影片製作</span></li>
+        <li><b>就業市場趨勢</b><span class="h">12 小時</span><span class="d">AI 與數位就業趨勢、個人優勢定位、LinkedIn、用 Canva 製作職涯素材</span></li>
+        <li><b>生成式 AI 求職技巧與應用</b><span class="h">12 小時</span><span class="d">用 AI 工具撰寫履歷、口試技巧、履歷健檢</span></li>
+        <li><b>敏捷專案管理實務</b><span class="h">12 小時</span><span class="d">敏捷工具與實施流程、專案執行與企劃方法架構</span></li>
+        <li><b>企業實務分享</b><span class="h">4 小時</span><span class="d">企業 AI 商務應用與導入講座</span></li>
+      </ul>
+
+      <h3 class="cgroup">個人與團隊專題<span>60 小時</span></h3>
+      <ul class="curr">
+        <li><b>個人專題</b><span class="h">12 小時</span><span class="d">專題規劃、成果發表與 Demo（對應本站的<a href="#car">新手 AI 副駕</a>）</span></li>
+        <li><b>團隊專題</b><span class="h">24 小時</span><span class="d">專題規劃、執行狀況 Review、簡報技巧（對應本站的<a href="#ins">好險有你</a>）</span></li>
+        <li><b>專題彩排、專題發表</b><span class="h">24 小時</span><span class="d">成果製作、簡報彩排、正式發表</span></li>
+      </ul>
+      <p class="note">另有通識及教務 8 小時（性別平等、教務管理規定）。</p>
+    </div>
+    <div class="nextrow">
+      <a class="back" href="#home">← 回作品總覽</a>
+      <a class="next" href="#ins">從第一個作品開始看 →</a>
+    </div>
+  </section>
+
+</div>
 </main>
 
 <footer>
@@ -574,6 +700,37 @@ document.querySelectorAll('[data-tabs]').forEach(box=>{
   const show=t=>{tabs.forEach(x=>{const on=x===t;x.setAttribute('aria-selected',on);x.tabIndex=on?0:-1;document.getElementById(x.getAttribute('aria-controls')).hidden=!on;});};
   tabs.forEach((t,i)=>{t.addEventListener('click',()=>show(t));t.addEventListener('keydown',e=>{let j=null;if(e.key==='ArrowRight')j=(i+1)%tabs.length;if(e.key==='ArrowLeft')j=(i-1+tabs.length)%tabs.length;if(j!==null){e.preventDefault();show(tabs[j]);tabs[j].focus();}});});
 });
+
+/* one view at a time: #home, #ins, #car, #kb, #qa, #diag, #edu, #course (old links keep working) */
+(function(){
+  document.documentElement.classList.add('js');
+  const views=[...document.querySelectorAll('[data-view]')];
+  const links=[...document.querySelectorAll('.topbar a')];
+  const bar=document.querySelector('.topbar ul');
+  const name=v=>v.getAttribute('data-view');
+  const current=()=>{let h='';try{h=decodeURIComponent(location.hash.replace(/^#/,''));}catch(e){}return views.some(v=>name(v)===h)?h:'home';};
+  const siteTitle='趙翊君｜AI 應用作品總覽';
+  function render(moved){
+    const c=current();
+    views.forEach(v=>{v.hidden=name(v)!==c;});
+    links.forEach(a=>{
+      if(a.getAttribute('data-go')===c){
+        a.setAttribute('aria-current','page');
+        if(bar){bar.scrollLeft=Math.max(0,a.offsetLeft-(bar.clientWidth-a.offsetWidth)/2);}
+      }else a.removeAttribute('aria-current');
+    });
+    const cur=links.find(a=>a.getAttribute('data-go')===c);
+    document.title=(c==='home'||!cur)?siteTitle:cur.textContent+'｜'+siteTitle;
+    window.scrollTo({top:0,left:0,behavior:'instant'});
+    if(moved){
+      const h=document.querySelector('[data-view="'+c+'"] h1, [data-view="'+c+'"] h2');
+      if(h){h.tabIndex=-1;h.focus({preventScroll:true});}
+    }
+  }
+  window.addEventListener('hashchange',()=>render(true));
+  render(false);
+  window.addEventListener('load',()=>{if(location.hash)window.scrollTo({top:0,left:0,behavior:'instant'});});
+})();
 </script>
 </body>
 </html>
