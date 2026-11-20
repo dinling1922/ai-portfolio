@@ -438,66 +438,87 @@
       <span class="num" aria-hidden="true">6</span>
       <div>
         <h2 id="car-t">新手 AI 副駕</h2>
-        <p class="what">個人專題，Flutter iOS App。陪新手獨自上路：用語音取得導航資訊、出事時有離線也能看的安全步驟並可語音追問，另有車主手冊問答與停車、出發前的圖文指引。</p>
+        <p class="what">個人專題，Flutter iOS App，已在實體 iPhone 上展示。陪新手獨自上路：用語音問車主手冊並附上手冊頁碼；出事時用語音一步步帶完安全流程；導航、停車與出發前檢查也都在同一個 App。</p>
       </div>
     </div>
     <div class="intro-row">
-      <p class="mine"><b>我負責：</b>需求分析、功能排序、技術整合與驗收，透過 ChatGPT 與 Codex 協作實作，並在模擬器與實體 iPhone 上驗證代表性流程。</p>
+      <p class="mine"><b>我負責：</b>需求分析、功能取捨與每個安全邊界的決定（哪些交給 AI、哪些必須用固定內容），透過 ChatGPT 與 Codex 協作實作；建立測試題庫，並在實體 iPhone 上逐項驗證。</p>
       <div class="actions">
         <a class="btn primary" href="https://youtu.be/J8ttlXsDf_w" target="_blank" rel="noopener">在 YouTube 觀看展示影片</a>
       </div>
       <div class="video"><iframe src="https://www.youtube-nocookie.com/embed/J8ttlXsDf_w" title="新手 AI 副駕展示影片" loading="lazy" allow="accelerometer; encrypted-media; gyroscope; picture-in-picture; fullscreen" allowfullscreen></iframe></div>
       <ul class="tags" aria-label="使用技術">
-        <li>Flutter（iOS）</li><li>Google Navigation SDK</li><li>語音辨識 STT</li><li>語音合成 TTS</li><li>Azure OpenAI Responses API</li><li>RAG 驗證規劃</li>
+        <li>Flutter（iOS）</li><li>RAG（PDF 車主手冊）</li><li>Azure OpenAI Embedding</li><li>gpt-4.1-mini</li><li>Azure OpenAI Realtime 語音</li><li>Azure 語音合成</li><li>Python 後端</li><li>SQLite</li><li>Google Navigation SDK</li><li>Google Places API</li><li>Apple 語音辨識</li>
       </ul>
     </div>
 
     <div class="flow tabs" data-tabs>
       <div class="tablist" role="tablist" aria-label="新手 AI 副駕的功能流程">
-        <button role="tab" id="car-tab-1" aria-controls="car-p-1" aria-selected="true">事故語音助手</button>
-        <button role="tab" id="car-tab-2" aria-controls="car-p-2" aria-selected="false" tabindex="-1">導航語音副駕</button>
-        <button role="tab" id="car-tab-3" aria-controls="car-p-3" aria-selected="false" tabindex="-1">車主手冊問答</button>
-        <button role="tab" id="car-tab-4" aria-controls="car-p-4" aria-selected="false" tabindex="-1">停車與出發前</button>
+        <button role="tab" id="car-tab-1" aria-controls="car-p-1" aria-selected="true">車主手冊 RAG</button>
+        <button role="tab" id="car-tab-2" aria-controls="car-p-2" aria-selected="false" tabindex="-1">事故語音對話</button>
+        <button role="tab" id="car-tab-3" aria-controls="car-p-3" aria-selected="false" tabindex="-1">導航與地點搜尋</button>
+        <button role="tab" id="car-tab-4" aria-controls="car-p-4" aria-selected="false" tabindex="-1">指南與出發前檢查</button>
+        <button role="tab" id="car-tab-5" aria-controls="car-p-5" aria-selected="false" tabindex="-1">驗證與資料安全</button>
       </div>
 
       <div role="tabpanel" id="car-p-1" aria-labelledby="car-tab-1">
-        <p class="sub">發生擦撞或故障時，新手常不知道先做什麼。</p>
+        <p class="sub">開車時想知道雨刷、除霧、霧燈怎麼開，直接用說的問，答案只來自這台車的手冊，並附上 PDF 頁碼。</p>
         <ol class="lane">
-          <li class="code"><span class="who-tag">程式</span><div><p>先顯示固定的安全七步驟</p><p class="d">步驟存在 App 本機，沒有網路也能看。</p></div></li>
-          <li class="human"><span class="who-tag">人</span><div><p>駕駛用語音追問現在的狀況</p></div></li>
-          <li class="code"><span class="who-tag">程式</span><div><p>把語音轉成文字，請駕駛確認後才送出</p><p class="d">避免辨識錯誤的內容被直接送給 AI。</p></div></li>
-          <li class="ai"><span class="who-tag">AI</span><div><p>依情境引導下一步</p><p class="d">使用 Azure OpenAI；只做情境引導，肇事責任判定不在功能範圍內。</p></div></li>
-          <li class="code"><span class="who-tag">程式</span><div><p>用語音朗讀回覆，失敗時提示並可重試</p></div></li>
+          <li class="code"><span class="who-tag">程式</span><div><p>事先把 Corolla Altis 車主手冊 PDF 切成段落、記下頁碼並轉成向量</p><p class="d">保養排程表另外轉成「項目、里程、月數」文字列。整本手冊不會送給模型。</p></div></li>
+          <li class="human"><span class="who-tag">人</span><div><p>用語音提問，例如「雨刷怎麼開」</p><p class="d">保留 Apple 語音辨識的原始逐字稿，不要求駕駛修改文字。</p></div></li>
+          <li class="code"><span class="who-tag">程式</span><div><p>處理同音錯字與口語說法</p><p class="d">從手冊詞彙產生發音相近的候選（例如「儲物」可能是「除霧」），口語對照表把「雙黃燈」對應到手冊的「緊急警示燈」；每個候選都要先在手冊找得到段落。</p></div></li>
+          <li class="code"><span class="who-tag">程式</span><div><p>語意＋關鍵字混合檢索，取前 3 段，且盡量來自不同頁</p></div></li>
+          <li class="code"><span class="who-tag">程式</span><div><p>回答前先檢查證據夠不夠</p><p class="d">相似度與內容覆蓋率的門檻用 31 題校準；不夠就說「手冊找不到足夠資訊」，不讓模型硬答。</p></div></li>
+          <li class="ai"><span class="who-tag">AI</span><div><p>只根據取回的段落，用白話回答</p><p class="d">同音候選有多個時，模型只能從通過檢查的候選中選一個，沒把握就請駕駛確認。</p></div></li>
+          <li class="code"><span class="who-tag">程式</span><div><p>附上實際取回的 PDF 頁碼並朗讀</p><p class="d">頁碼由程式附上，模型不能自己寫頁碼。連不到後端時改用本機答案，並明說目前是離線模式。</p></div></li>
         </ol>
+        <p class="proof">手冊問答 40 題批次測試（同音、同義、句型、應拒答）：37 題通過、0 題答錯。</p>
       </div>
 
       <div role="tabpanel" id="car-p-2" aria-labelledby="car-tab-2" hidden>
-        <p class="sub">新手開車時不方便看手機，用語音問「下一個路口怎麼走」。</p>
+        <p class="sub">發生事故時，按一下就能用說的，系統一步步問：有沒有人受傷、人在不在安全位置、119 和 110 打了沒。</p>
         <ol class="lane">
-          <li class="human"><span class="who-tag">人</span><div><p>設定目的地，開車中用語音提問</p></div></li>
-          <li class="code"><span class="who-tag">程式</span><div><p>從 Google Navigation SDK 取得道路名稱、轉彎指示、距離與預估抵達時間</p></div></li>
-          <li class="code"><span class="who-tag">程式</span><div><p>用中文語音朗讀導航資訊</p><p class="d">依實機試聽結果，改由 App 的中文 TTS 朗讀 SDK 提供的資訊。</p></div></li>
-          <li class="code"><span class="who-tag">程式</span><div><p>資料不足時，直接說目前無法確認</p></div></li>
+          <li class="human"><span class="who-tag">人</span><div><p>按下通話直接開口，可隨時插話</p><p class="d">連線完成前的聲音先暫存在手機，最多 5 秒，不會漏掉第一句。</p></div></li>
+          <li class="ai"><span class="who-tag">AI</span><div><p>即時轉成文字，從話中整理出事實</p><p class="d">Azure OpenAI Realtime 只能填寫「有沒有人受傷、在哪裡、通知了誰」這類欄位，並要附上駕駛的原話。</p></div></li>
+          <li class="code"><span class="who-tag">程式</span><div><p>核對原話後，依官方事故處理規則選下一句</p><p class="d">安全指示全是固定稿，依國道公路警察局、高公局與交通規則撰寫；AI 不自由產生安全建議。「如果起火要怎麼辦」這類假設句不會被當成真的起火。</p></div></li>
+          <li class="code"><span class="who-tag">程式</span><div><p>播放事先合成的台灣男聲語音</p><p class="d">固定句預先合成，說完到開始回答約 0.5～2.5 秒。</p></div></li>
+          <li class="human"><span class="who-tag">人</span><div><p>需要撥 119／110 時，由本人在 iPhone 撥號畫面確認撥出</p></div></li>
         </ol>
-        <p class="proof">這個功能刻意不交給 AI：導航資訊必須正確，所以全部取自 SDK 的實際資料，由程式朗讀。</p>
+        <p class="proof">用 170 句規則層測試、60 句 AI 判讀測試，加上兩輪 44 句與 63 句不照劇本的說法壓力測試，判錯的情況逐一修正；也在學校吵雜環境與手機熱點下實機演練。</p>
       </div>
 
       <div role="tabpanel" id="car-p-3" aria-labelledby="car-tab-3" hidden>
-        <p class="sub">想知道雨刷、除霧、儀表板警示燈怎麼操作，不必翻厚厚的手冊。</p>
+        <p class="sub">像 Google 地圖一樣搜尋目的地，導航中也能用語音問手冊問題，不必停下導航。</p>
         <ol class="lane">
-          <li class="human"><span class="who-tag">人</span><div><p>用語音問車子操作問題</p></div></li>
-          <li class="code"><span class="who-tag">程式</span><div><p>目前版本：從 11 題固定答案中回覆</p><p class="d">用來測試語音問答的互動流程。</p></div></li>
-          <li class="plan"><span class="who-tag">規劃</span><div><p>下一版：以 Toyota Corolla Altis 車主手冊做 RAG</p><p class="d">已設計驗證流程：文件切分、語意向量、混合檢索，目標是每個回答都能回查手冊原文。</p></div></li>
+          <li class="human"><span class="who-tag">人</span><div><p>打字或用說的找目的地，或按加油站、停車場、充電站</p></div></li>
+          <li class="code"><span class="who-tag">程式</span><div><p>打字停頓 0.5 秒自動列出最多 20 個地點，按「路線」直接預覽</p><p class="d">注音還在組字時不送出查詢。</p></div></li>
+          <li class="code"><span class="who-tag">程式</span><div><p>路線、距離與抵達時間全部取自 Google Navigation SDK</p></div></li>
+          <li class="code"><span class="who-tag">程式</span><div><p>接近測速照相時，在約 800 公尺與 200 公尺提醒</p><p class="d">資料來自警政署公開資料，1,895 個地點。</p></div></li>
+          <li class="human"><span class="who-tag">人</span><div><p>導航中按麥克風問「雨刷怎麼開」</p><p class="d">車輛操作問題走車主手冊 RAG；路線問題仍由 SDK 回答。</p></div></li>
         </ol>
+        <p class="proof">這個功能刻意不交給 AI 猜：道路、距離與抵達時間必須正確，全部取自 SDK 的實際資料。</p>
       </div>
 
       <div role="tabpanel" id="car-p-4" aria-labelledby="car-tab-4" hidden>
-        <p class="sub">新手最緊張的路邊停車、倒車入庫，以及出發前該檢查什麼。</p>
+        <p class="sub">新手最常卡住的操作與停車，用圖文一步步看，看不懂可以直接問。</p>
         <ol class="lane">
-          <li class="code"><span class="who-tag">程式</span><div><p>出發前檢查、路邊停車、90° 倒車入庫的圖文步驟</p></div></li>
-          <li class="human"><span class="who-tag">人</span><div><p>用語音說「下一步」切換停車步驟</p><p class="d">也可以錄下自己的提醒語音。</p></div></li>
-          <li class="code"><span class="who-tag">程式</span><div><p>雨刷、燈光、排檔、除霧與儀表板警示燈的操作指南</p></div></li>
+          <li class="code"><span class="who-tag">程式</span><div><p>雨刷、燈光、方向燈、啟動、排檔、加油、除霧、霧燈八類操作指南</p><p class="d">每頁下方的提問與手冊首頁走同一套 RAG 與拒答流程。</p></div></li>
+          <li class="human"><span class="who-tag">人</span><div><p>把指南內容逐頁對照 PDF 手冊</p><p class="d">列出 6 處不一致，例如除霧按鈕只適用自動空調、本車沒有 L 檔，再決定怎麼修。</p></div></li>
+          <li class="code"><span class="who-tag">程式</span><div><p>路邊停車、90° 倒車入庫的圖解步驟，以及儀表板燈號指南</p></div></li>
+          <li class="code"><span class="who-tag">程式</span><div><p>出發前、下車前檢查清單與保險聯絡人</p><p class="d">只存在手機本機，不送到後端或 AI。</p></div></li>
         </ol>
+      </div>
+
+      <div role="tabpanel" id="car-p-5" aria-labelledby="car-tab-5" hidden>
+        <p class="sub">展示能穩定，也要說得出為什麼可以信。</p>
+        <ol class="lane">
+          <li class="code"><span class="who-tag">程式</span><div><p>金鑰只放在 Mac 後端，手機拿不到</p><p class="d">Azure 金鑰存在 Mac 鑰匙圈；手機只拿到展示用 token。</p></div></li>
+          <li class="code"><span class="who-tag">程式</span><div><p>手機用一次性配對碼綁定</p><p class="d">8 碼配對碼 10 分鐘有效、只能用一次；資料庫只存 token 的雜湊，可撤銷遺失的手機。</p></div></li>
+          <li class="human"><span class="who-tag">人</span><div><p>每個題庫的預期答案，都先對照手冊原頁確認</p><p class="d">驗收看「前 3 段是否包含正確頁」，不拿模型自評分數當正確率。</p></div></li>
+          <li class="code"><span class="who-tag">程式</span><div><p>Python 161 項、Flutter 48 項自動測試</p></div></li>
+          <li class="human"><span class="who-tag">人</span><div><p>每次修改後在實體 iPhone 上測代表性情境</p><p class="d">模擬器過了不代表實機過，所以語音、導航與權限相關功能一定上實機。</p></div></li>
+        </ol>
+        <p class="proof">目前限制：後端跑在 Mac 上，手機需在同一網路；未做雲端部署、帳號與多車型。</p>
       </div>
     </div>
   </section>
