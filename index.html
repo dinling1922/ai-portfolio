@@ -88,15 +88,6 @@
   .back:hover,.next:hover{text-decoration:underline}
   .nextrow{display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px 20px;margin-top:40px;padding-top:16px;border-top:1px solid var(--line)}
 
-  /* ---------- course ---------- */
-  .curr{margin:0 0 28px;padding:0;list-style:none;border-top:2px solid var(--ink)}
-  .curr li{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:2px 16px;padding:14px 0;border-bottom:1px solid var(--line)}
-  .curr b{font-weight:700}
-  .curr .h{font-size:14px;color:var(--muted);white-space:nowrap}
-  .curr .d{grid-column:1 / -1;font-size:15px;color:var(--muted);line-height:1.65}
-  .cgroup{margin:0 0 6px;font-size:18px;font-weight:700;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
-  .cgroup span{font-size:15px;font-weight:500;color:var(--muted)}
-  .course-wrap{max-width:760px}
 
   /* ---------- work ---------- */
   section.work{padding:24px 0 56px}
@@ -177,7 +168,6 @@
     <li><a href="#qa" data-go="qa">QA 評分</a></li>
     <li><a href="#diag" data-go="diag">AI 導入診斷</a></li>
     <li><a href="#edu" data-go="edu">教材產生器</a></li>
-    <li><a href="#course" data-go="course">職訓課程</a></li>
   </ul>
 </nav>
 </div>
@@ -193,10 +183,11 @@
       <div>
         <p>我做過 13 年的客服、金融與保險理賠，也擔任過企業培訓管理師。工作上我習慣先弄清楚第一線的人卡在哪裡，再把處理方式整理成 SOP 和教材，帶新人練到能獨立上手。</p>
         <p>現在我用 AI 工具把這些做法變成可以試用的系統：客服知識庫、客服對話評分、企業 AI 導入診斷、培訓教材產生器，以及團隊與個人專題裡的 RAG 知識庫和語音 App。</p>
+        <p><strong>在職訓課程學到的：</strong>用系統分析的方法做需求訪談、畫流程圖；用 Azure 串接文字分析、語音與文件辨識服務；理解 RAG 知識庫如何切分文件、檢索並回答；也跟著實作 API、LINE Bot 與 Docker 雲端部署。我的目標不是成為工程師，而是在和客戶討論方案時，能判斷技術上做不做得到、需要準備哪些資料，並和工程團隊用同一種語言溝通。</p>
       </div>
       <dl class="facts">
         <div><dt>經歷</dt><dd>客服、金融、保險理賠、企業培訓，<span style="white-space:nowrap">共 13 年</span></dd></div>
-        <div><dt>學習中</dt><dd>緯育 TibaMe 商務 AI 應用開發人才養成班（職訓課程，12/3 結訓）。<a href="#course">課程內容</a></dd></div>
+        <div><dt>學習中</dt><dd>緯育 TibaMe 商務 AI 應用開發人才養成班（職訓課程，12/3 結訓）：Python、系統分析、Azure AI 服務、NLP 與 LLM 應用、RAG、雲端資料庫、Git／GitHub、Docker 部署、規格驅動開發（SDD）、敏捷專案管理</dd></div>
         <div><dt>工具</dt><dd>Dify、Lovable、Azure AI、Gemini、Flutter，並用 Codex 協作開發</dd></div>
         <div><dt>目標</dt><dd>AI 解決方案顧問、售前顧問、企業 AI 導入與培訓</dd></div>
       </dl>
@@ -219,7 +210,6 @@
       <li><a href="#diag"><span class="n">5</span><span class="t">企業 AI 導入診斷</span><span class="d">填一份部門流程資訊，得到哪些環節適合導入 AI、先做哪個、哪裡需要人工把關。</span><span class="s">可試用</span></a></li>
       <li><a href="#edu"><span class="n">6</span><span class="t">AI 教材產生器</span><span class="d">把口語的訓練錄音逐字稿，整理成新人看得懂的教材、測驗題和簡報大綱。</span><span class="s">可試用</span></a></li>
     </ul>
-    <a class="strip" href="#course"><b>職訓課程</b>｜緯育 TibaMe 商務 AI 應用開發人才養成班：22 個單元、338 小時，看課程內容 →</a>
   </section>
 
   <section class="legend" aria-label="如何閱讀作品頁">
@@ -630,58 +620,7 @@
     </div>
       <div class="nextrow">
       <a class="back" href="#home">← 回作品總覽</a>
-      <a class="next" href="#course">接著看：職訓課程 →</a>
-    </div>
-  </section>
-
-  <section class="work" id="course" data-view="course" aria-labelledby="course-t">
-    <a class="back" href="#home">← 回作品總覽</a>
-    <div class="work-head">
-      <div>
-        <h2 id="course-t">職訓課程：緯育 TibaMe 商務 AI 應用開發人才養成班</h2>
-        <p class="what">職訓課程（第 02 期），共 22 個單元、338 小時，2026/12/3 結訓。以下依課程大綱整理；我實際做出來的成果，請看其他作品頁。</p>
-      </div>
-    </div>
-    <div class="course-wrap">
-      <h3 class="cgroup">AI 及雲端技術<span>110 小時</span></h3>
-      <ul class="curr">
-        <li><b>NLP 開發實務</b><span class="h">30 小時</span><span class="d">文字情緒分析分類、文字轉語音、語音轉文字</span></li>
-        <li><b>LLM 開發實務</b><span class="h">30 小時</span><span class="d">客戶服務回饋機器人、以圖生文與文生圖、大型語言模型識圖</span></li>
-        <li><b>雲端資料庫入門</b><span class="h">18 小時</span><span class="d">Azure Database for MySQL、NoSQL 資料庫、Azure 資料庫建置</span></li>
-        <li><b>AI 前端開發實務</b><span class="h">12 小時</span><span class="d">視窗應用程式、Gradio Web 應用程式、LINE Bot</span></li>
-        <li><b>雲端平台 AI 應用實務</b><span class="h">12 小時</span><span class="d">Azure AI Services、Azure AI 語言與語音、Azure OpenAI、機器學習與責任 AI</span></li>
-        <li><b>NVIDIA DLI 官方課程：使用提示詞打造 LLM 應用服務</b><span class="h">8 小時</span><span class="d">Prompt Engineering、NVIDIA LLM NIM、用 Llama 3.1 部署 LLM 應用</span></li>
-      </ul>
-
-      <h3 class="cgroup">系統與軟體開發<span>102 小時</span></h3>
-      <ul class="curr">
-        <li><b>系統分析實務</b><span class="h">24 小時</span><span class="d">系統分析師的職責、UML 建模、需求拆解、流程建模、功能規格案例</span></li>
-        <li><b>SDD × Vibe Coding 實戰</b><span class="h">18 小時</span><span class="d">Gemini CLI、GitHub Copilot、Claude Code、Spec Driven Development</span></li>
-        <li><b>Git 與 GitHub</b><span class="h">12 小時</span><span class="d">版本控制的追蹤、回溯、協作與審查</span></li>
-        <li><b>Python 程式設計</b><span class="h">24 小時</span><span class="d">資料型態、流程控制、函式、模組與套件、虛擬環境</span></li>
-        <li><b>AI 應用開發與部署</b><span class="h">24 小時</span><span class="d">模組化與交付設計、容錯與防駭設計、AWS VM 部署、WSGI、Docker、AWS 容器化部署</span></li>
-      </ul>
-
-      <h3 class="cgroup">商務、求職及專案管理<span>58 小時</span></h3>
-      <ul class="curr">
-        <li><b>AI 概論與商務應用</b><span class="h">18 小時</span><span class="d">生成式 AI 工具、提示工程、AI 輔助資訊蒐集、簡報、圖像與影片製作</span></li>
-        <li><b>就業市場趨勢</b><span class="h">12 小時</span><span class="d">AI 與數位就業趨勢、個人優勢定位、LinkedIn、用 Canva 製作職涯素材</span></li>
-        <li><b>生成式 AI 求職技巧與應用</b><span class="h">12 小時</span><span class="d">用 AI 工具撰寫履歷、口試技巧、履歷健檢</span></li>
-        <li><b>敏捷專案管理實務</b><span class="h">12 小時</span><span class="d">敏捷工具與實施流程、專案執行與企劃方法架構</span></li>
-        <li><b>企業實務分享</b><span class="h">4 小時</span><span class="d">企業 AI 商務應用與導入講座</span></li>
-      </ul>
-
-      <h3 class="cgroup">個人與團隊專題<span>60 小時</span></h3>
-      <ul class="curr">
-        <li><b>個人專題</b><span class="h">12 小時</span><span class="d">專題規劃、成果發表與 Demo（對應本站的<a href="#car">新手 AI 副駕</a>）</span></li>
-        <li><b>團隊專題</b><span class="h">24 小時</span><span class="d">專題規劃、執行狀況 Review、簡報技巧（對應本站的<a href="#ins">好險有你</a>）</span></li>
-        <li><b>專題彩排、專題發表</b><span class="h">24 小時</span><span class="d">成果製作、簡報彩排、正式發表</span></li>
-      </ul>
-      <p class="note">另有通識及教務 8 小時（性別平等、教務管理規定）。</p>
-    </div>
-    <div class="nextrow">
-      <a class="back" href="#home">← 回作品總覽</a>
-      <a class="next" href="#ins">從第一個作品開始看 →</a>
+      
     </div>
   </section>
 
@@ -701,7 +640,7 @@ document.querySelectorAll('[data-tabs]').forEach(box=>{
   tabs.forEach((t,i)=>{t.addEventListener('click',()=>show(t));t.addEventListener('keydown',e=>{let j=null;if(e.key==='ArrowRight')j=(i+1)%tabs.length;if(e.key==='ArrowLeft')j=(i-1+tabs.length)%tabs.length;if(j!==null){e.preventDefault();show(tabs[j]);tabs[j].focus();}});});
 });
 
-/* one view at a time: #home, #ins, #car, #kb, #qa, #diag, #edu, #course (old links keep working) */
+/* one view at a time: #home, #ins, #car, #kb, #qa, #diag, #edu (old links keep working) */
 (function(){
   document.documentElement.classList.add('js');
   const views=[...document.querySelectorAll('[data-view]')];
