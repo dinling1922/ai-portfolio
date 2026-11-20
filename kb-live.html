@@ -180,9 +180,13 @@ async function ask(q) {
         if (e.type === "token") { answer += e.text; $("answer").querySelector(".body").innerHTML = md(answer); }
         if (e.type === "end") {
           let srcs = [...new Set(e.sources || [])];
-          const notFound = /找不到相關資訊/.test(answer);
-          if (notFound) srcs = [];
-          $("d-src").textContent = notFound ? "取回的段落都不足以回答，所以回覆找不到，沒有引用。" : srcs.length ? "引用：" + srcs.join("、") : "這次沒有引用任何 SOP 段落。";
+          const said = /^\s*找不到相關資訊/.test(answer);
+          const notFound = said && answer.trim().length < 40;   // 只回「找不到」
+          const mixed = said && !notFound;                      // 先說找不到，後面又補了內容
+          if (said) srcs = [];
+          $("d-src").textContent = notFound ? "取回的段落都不足以回答，所以回覆找不到，沒有引用。"
+            : mixed ? "取回的段落與問題不相關；模型說找不到後又補充了內容，那部分不是來自 SOP。"
+            : srcs.length ? "引用：" + srcs.join("、") : "這次沒有引用任何 SOP 段落。";
           if (srcs.length) $("answer").insertAdjacentHTML("beforeend", '<p class="src">引用來源：' + esc(srcs.join("、")) + "</p>");
         }
         if (e.type === "error") throw new Error(e.message);
