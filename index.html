@@ -94,6 +94,7 @@
   .work-head{display:flex;gap:20px;align-items:flex-start;margin-bottom:28px}
   .num{font-family:"Noto Serif TC",serif;font-weight:800;font-size:56px;line-height:1;color:var(--line);min-width:1.1em}
   .work h2{font-family:"Noto Serif TC",serif;font-weight:800;font-size:clamp(24px,3vw,32px);line-height:1.35;margin:0 0 6px}
+  .plain{font-weight:700;font-size:18px;line-height:1.6;margin:0 0 8px;color:var(--ink)}
   .what{margin:0;color:var(--muted);max-width:40em}
   .grid{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,6fr);gap:44px}
   @media (max-width:860px){.grid{grid-template-columns:1fr;gap:32px}.num{font-size:40px}}
@@ -154,6 +155,36 @@
   .video iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
   footer{padding:48px 0 64px;color:var(--muted);font-size:15px}
   footer p{margin:0 0 6px}
+
+  /* ---------- consulting sample, shots, estimates ---------- */
+  .est{margin:0 0 6px;font-size:15px;color:var(--muted)}
+  .shots{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin:8px 0 28px;padding:0;list-style:none}
+  @media (max-width:860px){.shots{grid-template-columns:1fr}}
+  .shots figure{margin:0}
+  .shots img{display:block;width:100%;height:auto;border:1px solid var(--line);border-radius:10px;background:#fff}
+  .shots figcaption{font-size:14px;color:var(--muted);line-height:1.6;margin-top:8px}
+  .shots-h{font-size:16px;font-weight:700;margin:0 0 4px}
+  .consult-wrap{max-width:820px}
+  .consult-wrap h3{font-size:18px;font-weight:700;margin:36px 0 10px}
+  .consult-wrap p{margin:0 0 12px}
+  .interview{margin:0;padding:0;list-style:none;border-top:2px solid var(--ink)}
+  .interview li{padding:14px 0;border-bottom:1px solid var(--line)}
+  .interview .q{font-weight:700;margin:0 0 4px}
+  .interview .a{margin:0 0 4px}
+  .interview .j{margin:0;font-size:15px;color:var(--muted)}
+  .cols3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin:0 0 8px}
+  @media (max-width:700px){.cols3{grid-template-columns:1fr}}
+  .cols3>div{border-radius:12px;padding:14px 16px;font-size:15px;line-height:1.65}
+  .cols3 b{display:block;font-size:16px;margin-bottom:6px}
+  .c-human{background:var(--human-bg)} .c-human b{color:var(--human)}
+  .c-code{background:var(--code-bg)} .c-code b{color:var(--code)}
+  .c-ai{background:var(--ai-bg)} .c-ai b{color:var(--ai)}
+  .cols3 ul{margin:0;padding-left:1.1em}
+  .twocol{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+  @media (max-width:700px){.twocol{grid-template-columns:1fr}}
+  .twocol>div{border:1px solid var(--line);border-radius:12px;padding:14px 16px;background:#fff;font-size:15px}
+  .twocol b{display:block;margin-bottom:6px;font-size:16px}
+  .twocol ul{margin:0;padding-left:1.1em}
 </style>
 </head>
 <body>
@@ -168,6 +199,7 @@
     <li><a href="#qa" data-go="qa">QA 評分</a></li>
     <li><a href="#diag" data-go="diag">AI 導入診斷</a></li>
     <li><a href="#edu" data-go="edu">教材產生器</a></li>
+    <li><a href="#consult" data-go="consult">導入提案範例</a></li>
   </ul>
 </nav>
 </div>
@@ -176,7 +208,7 @@
 <div data-view="home" id="home">
 <header class="hero">
   <div class="wrap">
-    <p class="who"><strong>趙翊君（Lala）</strong>｜AI 解決方案顧問・企業 AI 導入與培訓</p>
+    <p class="who"><strong>趙翊君（Lala）</strong>｜<a href="tel:0935810845">0935-810-845</a>｜AI 解決方案顧問・企業 AI 導入與培訓</p>
     <h1>做 AI 應用時，我會先決定三件事：哪些交給 AI、哪些交給程式、哪些留給人。</h1>
 
     <div class="about">
@@ -210,6 +242,7 @@
       <li><a href="#diag"><span class="n">5</span><span class="t">企業 AI 導入診斷</span><span class="d">填一份部門流程資訊，得到哪些環節適合導入 AI、先做哪個、哪裡需要人工把關。</span><span class="s">可試用</span></a></li>
       <li><a href="#edu"><span class="n">6</span><span class="t">AI 教材產生器</span><span class="d">把口語的訓練錄音逐字稿，整理成新人看得懂的教材、測驗題和簡報大綱。</span><span class="s">可試用</span></a></li>
     </ul>
+    <a class="strip" href="#consult"><b>顧問交付範例</b>｜虛構客戶的需求訪談紀錄與導入路線圖：看我怎麼評估「哪些適合交給 AI」 →</a>
   </section>
 
   <section class="legend" aria-label="如何閱讀作品頁">
@@ -218,7 +251,7 @@
       <li class="r-code"><b>程式</b>規則、計算、檢查、存檔</li>
       <li class="r-human"><b>人</b>輸入、確認、做最後決定</li>
     </ul>
-    <p class="lead">每個作品頁都標出：你按下按鈕之後，每一步由 AI、程式還是人負責。所有範例都是虛構資料；可試用的作品使用免費的 Gemini 模型，如果出現「模型忙碌」的提示，等幾秒再送一次即可。</p>
+    <p class="lead">每個作品頁都標出：你按下按鈕之後，每一步由 AI、程式還是人負責。所有範例都是虛構資料。</p>
   </section>
 </div>
 </div>
@@ -231,6 +264,7 @@
       <span class="num" aria-hidden="true">1</span>
       <div>
         <h2 id="ins-t">好險有你｜旅遊保險 AI Agent 平台</h2>
+        <p class="plain">旅客不知道怎麼選旅平險或準備理賠時，可比較方案並整理理賠待辦與文件。</p>
         <p class="what">7 人團隊專題。出發前，從 5 家保險公司的旅平險中推薦並比較方案、依條款回答問題；出事後，整理可能適用的理賠項目、待辦與應備文件，檢查上傳的文件，再協助用旅客自己的 Gmail 送件。系統由 7 個 Agent 分工。</p>
       </div>
     </div>
@@ -238,11 +272,20 @@
       <p class="mine"><b>我負責：</b>理賠文件辨識（Agent 6），以及條文入庫前的驗證工具（Agent 2 Validator）。下方頁籤標示「我負責」的部分由我開發與驗收，其他為團隊共同開發。</p>
       <div class="actions">
         <a class="btn primary" href="https://github.com/dinling1922/gae265-03-group-project" target="_blank" rel="noopener">查看程式碼（GitHub）</a>
-        <span class="btn off" aria-disabled="true">完整展示影片 11/28 公開</span>
       </div>
+      <p class="note">完整展示影片預計 11/28 公開。</p>
+    <p class="shots-h">畫面截圖（我負責的理賠文件辨識；皆為模擬文件）</p>
+    <ul class="shots">
+      <li><figure><img src="img/ins-agent6-classify.png" alt="理賠文件辨識的「認出種類」步驟：比對關鍵字後，判定為 D14 醫療費用收據" loading="lazy" width="878" height="288"><figcaption>認出種類：比對文件裡的關鍵字，判定這份是「D14 醫療費用收據」。</figcaption></figure></li>
+      <li><figure><img src="img/ins-agent6-redact.png" alt="理賠文件辨識的「遮個資」步驟：換掉電話與姓名 2 處，只顯示遮過的文字" loading="lazy" width="878" height="600"><figcaption>遮個資：先換掉電話與姓名 2 處，後面的步驟只看遮過的文字。</figcaption></figure></li>
+      <li><figure><img src="img/ins-agent6-checkfail.png" alt="理賠待辦畫面：上傳的延誤證明缺少延誤期間，標示不合格並提示向航空公司索取" loading="lazy" width="724" height="392"><figcaption>文件不齊就說明原因：延誤證明沒寫延誤期間，標示不合格，並提示向航空公司索取。</figcaption></figure></li>
+    </ul>
+      <details class="techs">
+        <summary>使用技術</summary>
       <ul class="tags" aria-label="使用技術">
         <li>React＋TypeScript</li><li>FastAPI</li><li>PostgreSQL＋pgvector</li><li>Docker Compose</li><li>Azure VM＋Caddy</li><li>Azure OpenAI</li><li>text-embedding-3-large</li><li>Azure Document Intelligence</li><li>BM25＋向量混合檢索</li><li>Celery＋Redis</li><li>Google 登入／Drive／Gmail API</li><li>MCP 伺服器</li><li>LINE Bot</li><li>WebMCP</li>
       </ul>
+      </details>
     </div>
 
     <div class="flow tabs" data-tabs>
@@ -345,6 +388,7 @@
       <span class="num" aria-hidden="true">2</span>
       <div>
         <h2 id="car-t">新手 AI 副駕</h2>
+        <p class="plain">新手駕駛不熟車輛操作或遇到事故時，可用語音問手冊並跟著安全流程處理。</p>
         <p class="what">個人專題，Flutter iOS App，已在實體 iPhone 上展示。陪新手獨自上路：用語音問車主手冊並附上手冊頁碼；出事時用語音一步步帶完安全流程；導航、停車與出發前檢查也都在同一個 App。</p>
       </div>
     </div>
@@ -354,9 +398,12 @@
         <a class="btn primary" href="https://youtu.be/J8ttlXsDf_w" target="_blank" rel="noopener">在 YouTube 觀看展示影片</a>
       </div>
       <div class="video"><iframe src="https://www.youtube-nocookie.com/embed/J8ttlXsDf_w" title="新手 AI 副駕展示影片" loading="lazy" allow="accelerometer; encrypted-media; gyroscope; picture-in-picture; fullscreen" allowfullscreen></iframe></div>
+      <details class="techs">
+        <summary>使用技術</summary>
       <ul class="tags" aria-label="使用技術">
         <li>Flutter（iOS）</li><li>RAG（PDF 車主手冊）</li><li>Azure OpenAI Embedding</li><li>gpt-4.1-mini</li><li>Azure OpenAI Realtime 語音</li><li>Azure 語音合成</li><li>Python 後端</li><li>SQLite</li><li>Google Navigation SDK</li><li>Google Places API</li><li>Apple 語音辨識</li>
       </ul>
+      </details>
     </div>
 
     <div class="flow tabs" data-tabs>
@@ -439,6 +486,7 @@
       <span class="num" aria-hidden="true">3</span>
       <div>
         <h2 id="kb-t">Dify 客服知識庫</h2>
+        <p class="plain">客服新人遇到不熟悉的問題時，可用一般說法提問，取得處理步驟與文件來源。</p>
         <p class="what">客服新人遇到問題時，用一般說法提問，就能得到依公司 SOP 整理好的處理步驟，並看到答案出自哪份文件。</p>
       </div>
     </div>
@@ -450,13 +498,17 @@
           <li>左邊是回答，右邊即時顯示這次從 SOP 取回哪幾段、相似度、使用的模型與每一步花的時間。</li>
           <li>「查訂單」和「員工旅遊補助」兩個範例，示範它遇到做不到或查不到的事時怎麼回答。</li>
         </ol>
+        <p class="note">使用免費的 Gemini 模型；如果出現「模型忙碌」的提示，等幾秒再送一次即可。</p>
         <div class="actions">
           <a class="btn primary" href="kb-live.html">看 AI 即時執行過程</a>
           <a class="btn ghost" href="https://udify.app/chat/xilWeGjJc5hgvfVH" target="_blank" rel="noopener">開啟 Dify 原始介面</a>
         </div>
+        <details class="techs">
+          <summary>使用技術</summary>
         <ul class="tags" aria-label="使用技術">
           <li>Dify Chatflow</li><li>Dify API 串流事件</li><li>Cloudflare Workers 中繼站</li><li>RAG 知識庫檢索</li><li>gemini-embedding-001</li><li>Gemini 3.1 Flash-Lite</li><li>引用來源</li><li>失敗自動重試</li>
         </ul>
+        </details>
       </div>
       <div class="flow">
         <h3>按下範例問題之後</h3>
@@ -490,7 +542,9 @@
       <span class="num" aria-hidden="true">4</span>
       <div>
         <h2 id="qa-t">客服 QA 評分與培訓建議</h2>
+        <p class="plain">主管需要檢視客服對話時，可貼上逐字稿，取得有原文依據的評語與培訓建議。</p>
         <p class="what">主管貼上一段客服對話，就能得到四個面向的分數、有逐字稿依據的評語，以及下一步的培訓建議。</p>
+        <p class="est">人工現況：依我過去的工作經驗，評一份客服對話約需 10 分鐘（經驗估算；用 AI 之後的實際時間尚未量測）。</p>
       </div>
     </div>
     <div class="grid">
@@ -501,12 +555,16 @@
           <li>可以先修改對話內容，再按「開始評分」。</li>
           <li>往下捲動，看分數、評語與 AI 培訓建議報告。</li>
         </ol>
+        <p class="note">使用免費的 Gemini 模型；如果出現「模型忙碌」的提示，等幾秒再送一次即可。</p>
         <div class="actions">
           <a class="btn primary" href="https://smart-agent-score.lovable.app/" target="_blank" rel="noopener">開啟 QA 評分</a>
         </div>
+        <details class="techs">
+          <summary>使用技術</summary>
         <ul class="tags" aria-label="使用技術">
           <li>Lovable</li><li>React</li><li>TanStack Start 伺服器函式</li><li>Zod 格式驗證</li><li>Gemini 3.1 Flash-Lite</li>
         </ul>
+        </details>
       </div>
       <div class="flow">
         <h3>按下「開始評分」之後</h3>
@@ -540,6 +598,7 @@
       <span class="num" aria-hidden="true">5</span>
       <div>
         <h2 id="diag-t">企業 AI 導入診斷</h2>
+        <p class="plain">企業不確定哪些流程適合導入時，可填寫流程資訊，取得導入順序與人工把關建議。</p>
         <p class="what">企業還不確定 AI 能做什麼時，先填一份部門流程資訊，就能得到哪些環節適合導入、先做哪個、哪裡需要人工把關的初步報告。</p>
       </div>
     </div>
@@ -551,12 +610,16 @@
           <li>按「開始對話」。</li>
           <li>點範例問題「請根據我填的企業流程資訊，幫我做 AI 導入診斷」。</li>
         </ol>
+        <p class="note">使用免費的 Gemini 模型；如果出現「模型忙碌」的提示，等幾秒再送一次即可。</p>
         <div class="actions">
           <a class="btn primary" href="https://udify.app/chat/iRZRYANPM8KwhKzg" target="_blank" rel="noopener">開啟導入診斷</a>
         </div>
+        <details class="techs">
+          <summary>使用技術</summary>
         <ul class="tags" aria-label="使用技術">
           <li>Dify Chatflow</li><li>顧問式 Prompt 規則</li><li>Gemini 3.1 Flash-Lite</li><li>Python 多 Agent 版本</li>
         </ul>
+        </details>
       </div>
       <div class="flow">
         <h3>按下範例問題之後</h3>
@@ -590,7 +653,9 @@
       <span class="num" aria-hidden="true">6</span>
       <div>
         <h2 id="edu-t">AI 教材產生器</h2>
+        <p class="plain">培訓人員面對重複、跳躍的口語逐字稿時，可整理成新人教材、測驗與簡報大綱。</p>
         <p class="what">把一段口語的訓練錄音逐字稿，整理成新人看得懂的教材、測驗題和簡報大綱。</p>
+        <p class="est">人工現況：依我過去的工作經驗，整理一份 SOP 約需 30 分鐘（經驗估算；用 AI 之後的實際時間尚未量測）。</p>
       </div>
     </div>
     <div class="grid">
@@ -604,9 +669,12 @@
         <div class="actions">
           <a class="btn primary" href="https://udify.app/completion/eHkV3p2p4VUYDn3w" target="_blank" rel="noopener">開啟教材產生器</a>
         </div>
+        <details class="techs">
+          <summary>使用技術</summary>
         <ul class="tags" aria-label="使用技術">
           <li>Dify 文字產生應用</li><li>Prompt 設計</li><li>Gemini 3.1 Flash-Lite</li>
         </ul>
+        </details>
       </div>
       <div class="flow">
         <h3>按下「執行」之後</h3>
@@ -620,10 +688,70 @@
     </div>
       <div class="nextrow">
       <a class="back" href="#home">← 回作品總覽</a>
+      <a class="next" href="#consult">下一個：導入提案範例 →</a>
       
     </div>
   </section>
 
+
+  <section class="work" id="consult" data-view="consult" aria-labelledby="consult-t">
+    <a class="back" href="#home">← 回作品總覽</a>
+    <div class="work-head">
+      <div>
+        <h2 id="consult-t">導入提案範例：客服品質評分</h2>
+        <p class="what">虛構客戶「某電商客服部」的需求訪談紀錄與導入路線圖，示範我怎麼判斷哪些適合交給 AI。客戶、人數與份數都是為了示範設定的假設；每份評分約 10 分鐘是我的經驗估算。</p>
+      </div>
+    </div>
+    <div class="consult-wrap">
+      <h3>1. 需求訪談：我會問的五個問題</h3>
+      <ol class="interview">
+        <li><p class="q">Q1　現在怎麼評分？</p><p class="a">主管每週抽 40 份對話（假設），逐份閱讀、打分、寫評語。</p><p class="j">判斷：重複性高、有規則可依，適合讓 AI 先做初評。</p></li>
+        <li><p class="q">Q2　一份要花多久？</p><p class="a">約 10 分鐘（我的經驗估算），每週約 40 × 10 分鐘 ≈ 6.7 小時。</p><p class="j">判斷：先量出現況工時，導入後才有比較基準。</p></li>
+        <li><p class="q">Q3　評分標準寫在哪裡？</p><p class="a">一張 Excel 表，另有一些只在資深主管腦中的標準。</p><p class="j">風險：標準沒寫清楚，AI 會跟著不一致。第一步要先把標準寫成可檢查的條目。</p></li>
+        <li><p class="q">Q4　分數用在哪裡？</p><p class="a">會當作月度考核的參考。</p><p class="j">風險：AI 分數不能直接當考核。定位成「初評」，由主管複核後才算數。</p></li>
+        <li><p class="q">Q5　對話資料能給外部模型看嗎？</p><p class="a">逐字稿含顧客姓名與電話，內部有資安規定。</p><p class="j">風險：先用去識別化或虛構資料驗證；正式上線前要和資安確認資料送去哪裡。</p></li>
+      </ol>
+
+      <h3>2. 流程拆解：誰負責哪一步</h3>
+      <div class="cols3">
+        <div class="c-code"><b>程式</b><ul><li>抽樣、遮蔽個資</li><li>檢查 AI 回傳格式</li><li>加總分數</li><li>存檔、留紀錄</li></ul></div>
+        <div class="c-ai"><b>AI</b><ul><li>依評分標準逐項評語</li><li>引用對話原句當依據</li><li>整理培訓建議草稿</li></ul></div>
+        <div class="c-human"><b>人</b><ul><li>寫出並維護評分標準</li><li>複核 AI 初評</li><li>決定考核與複訓安排</li></ul></div>
+      </div>
+      <p>這個分法和<a href="#qa">客服 QA 評分</a>作品相同：分數由程式加總，不交給 AI 計算；每點評語都要附逐字稿原句。</p>
+
+      <h3>3. 導入路線</h3>
+      <ol class="interview">
+        <li><p class="q">短期（約 2 週）：用 20 份去識別化對話跑原型</p><p class="a">先把評分標準整理成條目，跑出初評，請主管對照自己的評分。</p><p class="j">成功標準：由客戶主管決定，例如「AI 評語方向和主管一致的比例」。</p></li>
+        <li><p class="q">中期（約 1–2 個月）：進入主管日常流程</p><p class="a">AI 先評，主管複核並修改；記錄主管改了哪些地方。</p><p class="j">用主管的修改紀錄回頭調整標準與提示詞。</p></li>
+        <li><p class="q">長期：串接培訓</p><p class="a">把常見扣分點整理成新人複訓內容。</p><p class="j">這一步才用到教材整理的工具。</p></li>
+      </ol>
+
+      <h3>4. 預期效益與風險</h3>
+      <div class="twocol">
+        <div><b>預期效益</b><ul><li>主管從「每份從頭評」改成「複核 AI 初評」，每週約 6.7 小時的評分工時有機會降低。</li><li>評分標準被寫清楚，新舊主管的標準比較一致。</li><li>實際省多少時間，要試跑後量測，這份提案不預設節省百分比。</li></ul></div>
+        <div><b>主要風險與因應</b><ul><li>標準不清楚：先整理標準，再導入。</li><li>AI 編造或偏頗：評語必須引用原句；格式不符就停止，不自動放行。</li><li>個資外流：去識別化後才送模型，並確認資料流向。</li><li>被當成考核工具：分數僅供討論，由主管決定。</li></ul></div>
+      </div>
+
+      <h3>5. 第一版做什麼、不做什麼</h3>
+      <div class="twocol">
+        <div><b>做</b><ul><li>單一客服團隊、單一評分表</li><li>貼上逐字稿 → 分數、評語、培訓建議</li><li>主管複核畫面</li></ul></div>
+        <div><b>先不做</b><ul><li>自動寫入考核系統</li><li>即時監聽通話</li><li>跨部門、多套評分標準</li></ul></div>
+      </div>
+
+      <h3>6. 我需要客戶提供什麼</h3>
+      <ul>
+        <li>現行評分表與評分標準的文字版</li>
+        <li>20 份去識別化的對話逐字稿，以及主管當時的評分</li>
+        <li>資安規定中關於資料外送的條款</li>
+        <li>一位願意試用並回饋的主管</li>
+      </ul>
+    </div>
+    <div class="nextrow">
+      <a class="back" href="#home">← 回作品總覽</a>
+      <a class="next" href="#ins">從第一個作品開始看 →</a>
+    </div>
+  </section>
 </div>
 </main>
 
