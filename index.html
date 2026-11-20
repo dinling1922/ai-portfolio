@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>趙翊君｜AI 應用作品總覽</title>
+<meta name="description" content="趙翊君的 AI 應用作品：可直接試用，並說明每一步由 AI、程式或人負責。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=Noto+Serif+TC:wght@600;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#FCFCFA;
+    --panel:#F1F3F2;
+    --ink:#1C2733;
+    --muted:#5B6672;
+    --line:#D9DEDC;
+    --ai:#6747C7;   --ai-bg:#EFEBFA;
+    --code:#0B7268; --code-bg:#E3F2EF;
+    --human:#9A6200;--human-bg:#FBF0DB;
+    --link:#1F4FA8;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+  body{margin:0;background:var(--paper);color:var(--ink);
+    font-family:"Noto Sans TC",system-ui,sans-serif;font-size:17px;line-height:1.75}
+  a{color:var(--link)}
+  a:focus-visible,button:focus-visible,summary:focus-visible{outline:3px solid var(--link);outline-offset:3px;border-radius:4px}
+  .wrap{max-width:1100px;margin:0 auto;padding:0 28px}
+
+  /* ---------- hero ---------- */
+  header.hero{padding:72px 0 48px;border-bottom:1px solid var(--line)}
+  .who{font-size:16px;color:var(--muted);margin:0 0 28px}
+  .who strong{color:var(--ink);font-weight:700}
+  h1{font-family:"Noto Serif TC",serif;font-weight:800;font-size:clamp(30px,4.6vw,50px);
+    line-height:1.3;margin:0;max-width:20em;letter-spacing:.01em}
+  .roles{display:flex;flex-wrap:wrap;gap:14px;margin:34px 0 26px;padding:0;list-style:none}
+  .roles li{display:flex;align-items:baseline;gap:10px;padding:12px 18px;border-radius:12px;font-size:16px}
+  .roles b{font-size:18px}
+  .r-ai{background:var(--ai-bg)} .r-ai b{color:var(--ai)}
+  .r-code{background:var(--code-bg)} .r-code b{color:var(--code)}
+  .r-human{background:var(--human-bg)} .r-human b{color:var(--human)}
+  .lead{max-width:42em;color:var(--muted);margin:0}
+
+  /* ---------- index ---------- */
+  nav.index{padding:36px 0 8px}
+  nav.index h2{font-size:15px;font-weight:700;color:var(--muted);margin:0 0 12px}
+  nav.index ol{margin:0;padding:0;list-style:none;display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:4px 28px}
+  nav.index li a{display:flex;gap:12px;align-items:baseline;padding:8px 0;text-decoration:none;color:var(--ink);border-bottom:1px solid var(--line)}
+  nav.index li a:hover .t{text-decoration:underline}
+  nav.index .n{font-family:"Noto Serif TC",serif;font-weight:800;color:var(--muted);min-width:1.4em}
+  nav.index .s{margin-left:auto;font-size:14px;color:var(--muted);white-space:nowrap}
+
+  /* ---------- work ---------- */
+  section.work{padding:64px 0;border-bottom:1px solid var(--line);scroll-margin-top:12px}
+  .work-head{display:flex;gap:20px;align-items:flex-start;margin-bottom:28px}
+  .num{font-family:"Noto Serif TC",serif;font-weight:800;font-size:56px;line-height:1;color:var(--line);min-width:1.1em}
+  .work h2{font-family:"Noto Serif TC",serif;font-weight:800;font-size:clamp(24px,3vw,32px);line-height:1.35;margin:0 0 6px}
+  .what{margin:0;color:var(--muted);max-width:40em}
+  .grid{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,6fr);gap:44px}
+  @media (max-width:860px){.grid{grid-template-columns:1fr;gap:32px}.num{font-size:40px}}
+
+  .try h3,.flow h3{font-size:16px;font-weight:700;margin:0 0 12px}
+  .steps{margin:0 0 22px;padding-left:1.3em}
+  .steps li{margin-bottom:6px}
+  .actions{display:flex;flex-wrap:wrap;gap:12px;margin-bottom:26px}
+  .btn{display:inline-flex;align-items:center;gap:8px;padding:12px 20px;border-radius:10px;font-weight:700;font-size:16px;text-decoration:none;border:2px solid var(--ink)}
+  .btn.primary{background:var(--ink);color:#fff}
+  .btn.primary:hover{background:#2E3C4B}
+  .btn.ghost{color:var(--ink);background:transparent}
+  .btn.ghost:hover{background:var(--panel)}
+  .btn.off{border-style:dashed;border-color:var(--muted);color:var(--muted);cursor:default}
+  .note{font-size:15px;color:var(--muted);margin:0 0 22px}
+  .tags{display:flex;flex-wrap:wrap;gap:8px;margin:0;padding:0;list-style:none}
+  .tags li{font-size:14px;padding:4px 10px;border:1px solid var(--line);border-radius:6px;background:#fff}
+  .mine{font-size:15px;background:var(--panel);border-radius:10px;padding:12px 16px;margin:0 0 22px}
+
+  /* the role lane: the one memorable thing */
+  .flow{background:#fff;border:1px solid var(--line);border-radius:16px;padding:24px 24px 8px}
+  .flow .sub{font-size:14px;color:var(--muted);margin:-6px 0 18px}
+  .lane{list-style:none;margin:0;padding:0;counter-reset:s}
+  .lane li{position:relative;display:grid;grid-template-columns:64px 1fr;gap:14px;padding:0 0 20px}
+  .lane li::before{content:"";position:absolute;left:31px;top:30px;bottom:0;width:2px;background:var(--line)}
+  .lane li:last-child::before{display:none}
+  .who-tag{align-self:start;justify-self:center;width:64px;text-align:center;font-size:14px;font-weight:700;padding:3px 0;border-radius:999px;position:relative;z-index:1}
+  .ai .who-tag{background:var(--ai-bg);color:var(--ai)}
+  .code .who-tag{background:var(--code-bg);color:var(--code)}
+  .human .who-tag{background:var(--human-bg);color:var(--human)}
+  .lane p{margin:0}
+  .lane .d{font-size:15px;color:var(--muted)}
+
+  details{margin-top:22px;border-top:1px solid var(--line);padding-top:14px}
+  summary{cursor:pointer;font-weight:700;font-size:16px;list-style:none;display:flex;align-items:center;gap:10px}
+  summary::-webkit-details-marker{display:none}
+  summary::before{content:"+";display:inline-grid;place-items:center;width:22px;height:22px;border:2px solid var(--ink);border-radius:6px;font-size:15px;line-height:1}
+  details[open] summary::before{content:"−"}
+  details ul{margin:12px 0 0;padding-left:1.2em}
+  details li{margin-bottom:8px}
+  details li b{font-weight:700}
+
+  footer{padding:48px 0 64px;color:var(--muted);font-size:15px}
+  footer p{margin:0 0 6px}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="wrap">
+    <p class="who"><strong>趙翊君（Lala）</strong>｜AI 解決方案顧問・企業 AI 導入與培訓</p>
+    <h1>做 AI 應用時，我會先決定三件事：哪些交給 AI、哪些交給程式、哪些留給人。</h1>
+    <ul class="roles" aria-label="流程說明中的三種角色">
+      <li class="r-ai"><b>AI</b>理解、判斷、產生文字</li>
+      <li class="r-code"><b>程式</b>規則、計算、檢查、存檔</li>
+      <li class="r-human"><b>人</b>輸入、確認、做最後決定</li>
+    </ul>
+    <p class="lead">下面的作品大多可以直接試用。每個作品旁邊會說明：你按下按鈕之後，每一步由誰負責、在做什麼。所有範例都是虛構資料；作品使用免費的 Gemini 模型，如果出現「模型忙碌」的提示，等幾秒再送一次即可。</p>
+  </div>
+</header>
+
+<main class="wrap">
+  <nav class="index" aria-labelledby="idx">
+    <h2 id="idx">建議依序瀏覽</h2>
+    <ol>
+      <li><a href="#kb"><span class="n">1</span><span class="t">Dify 客服知識庫</span><span class="s">可試用</span></a></li>
+      <li><a href="#qa"><span class="n">2</span><span class="t">客服 QA 評分與培訓建議</span><span class="s">可試用</span></a></li>
+      <li><a href="#diag"><span class="n">3</span><span class="t">企業 AI 導入診斷</span><span class="s">可試用</span></a></li>
+      <li><a href="#edu"><span class="n">4</span><span class="t">AI 教材產生器</span><span class="s">可試用</span></a></li>
+      <li><a href="#ins"><span class="n">5</span><span class="t">好險有你｜旅遊保險 AI 平台</span><span class="s">團隊專題</span></a></li>
+      <li><a href="#car"><span class="n">6</span><span class="t">新手 AI 副駕</span><span class="s">iOS App</span></a></li>
+    </ol>
+  </nav>
+
+  <!-- 1 -->
+  <section class="work" id="kb" aria-labelledby="kb-t">
+    <div class="work-head">
+      <span class="num" aria-hidden="true">1</span>
+      <div>
+        <h2 id="kb-t">Dify 客服知識庫</h2>
+        <p class="what">客服新人遇到問題時，用一般說法提問，就能得到依公司 SOP 整理好的處理步驟，並看到答案出自哪份文件。</p>
+      </div>
+    </div>
+    <div class="grid">
+      <div class="try">
+        <h3>怎麼試用</h3>
+        <ol class="steps">
+          <li>開啟作品，按左上角「新對話」。</li>
+          <li>點任一個範例問題，就會直接送出。</li>
+          <li>第二個範例（查訂單）示範它遇到做不到的事時，如何說明而不亂答。</li>
+        </ol>
+        <div class="actions">
+          <a class="btn primary" href="https://udify.app/chat/xilWeGjJc5hgvfVH" target="_blank" rel="noopener">開啟客服知識庫</a>
+        </div>
+        <ul class="tags" aria-label="使用技術">
+          <li>Dify Chatflow</li><li>RAG 知識庫檢索</li><li>gemini-embedding-001</li><li>Gemini 3.1 Flash-Lite</li><li>引用來源</li><li>失敗自動重試</li>
+        </ul>
+      </div>
+      <div class="flow">
+        <h3>按下範例問題之後</h3>
+        <p class="sub">流程說明（不是即時畫面）</p>
+        <ol class="lane">
+          <li class="human"><span class="who-tag">人</span><div><p>客服新人提出問題</p><p class="d">例如：信用卡付款、還沒出貨，要確認哪些資訊？</p></div></li>
+          <li class="code"><span class="who-tag">程式</span><div><p>到知識庫找出最相關的 3 段 SOP</p><p class="d">問題先轉成向量，再和 SOP 段落比對相似度。</p></div></li>
+          <li class="ai"><span class="who-tag">AI</span><div><p>只根據這 3 段內容回答</p><p class="d">規則：查不到就說找不到、不能假裝查詢真實訂單、以「客服該怎麼做」的角度回答。</p></div></li>
+          <li class="code"><span class="who-tag">程式</span><div><p>附上引用的文件名稱</p><p class="d">模型忙碌時自動重試 3 次，仍失敗就顯示提示。</p></div></li>
+          <li class="human"><span class="who-tag">人</span><div><p>客服依步驟處理</p><p class="d">對顧客的承諾仍由客服本人決定。</p></div></li>
+        </ol>
+      </div>
+    </div>
+    <details>
+      <summary>設計考量</summary>
+      <ul>
+        <li><b>可驗證：</b>以固定測試題檢查回答，發現 SOP 被切成平均 16 字的短段落，導致漏答確認清單；調整段落後重測，回答完整並附上引用來源。</li>
+        <li><b>資料安全：</b>只依 SOP 回答，查不到就說找不到，也不假裝能查詢真實訂單。</li>
+        <li><b>維護成本：</b>使用 Gemini 免費方案；SOP 更新時只要替換知識庫文件，不必改程式。</li>
+      </ul>
+    </details>
+  </section>
+
+  <!-- 2 -->
+  <section class="work" id="qa" aria-labelledby="qa-t">
+    <div class="work-head">
+      <span class="num" aria-hidden="true">2</span>
+      <div>
+        <h2 id="qa-t">客服 QA 評分與培訓建議</h2>
+        <p class="what">主管貼上一段客服對話，就能得到四個面向的分數、有逐字稿依據的評語，以及下一步的培訓建議。</p>
+      </div>
+    </div>
+    <div class="grid">
+      <div class="try">
+        <h3>怎麼試用</h3>
+        <ol class="steps">
+          <li>開啟作品，按「帶入虛構範例」。</li>
+          <li>可以先修改對話內容，再按「開始評分」。</li>
+          <li>往下捲動，看分數、評語與 AI 培訓建議報告。</li>
+        </ol>
+        <div class="actions">
+          <a class="btn primary" href="https://smart-agent-score.lovable.app/" target="_blank" rel="noopener">開啟 QA 評分</a>
+        </div>
+        <ul class="tags" aria-label="使用技術">
+          <li>Lovable</li><li>React</li><li>TanStack Start 伺服器函式</li><li>Zod 格式驗證</li><li>Gemini 3.1 Flash-Lite</li>
+        </ul>
+      </div>
+      <div class="flow">
+        <h3>按下「開始評分」之後</h3>
+        <p class="sub">流程說明（不是即時畫面）</p>
+        <ol class="lane">
+          <li class="human"><span class="who-tag">人</span><div><p>主管貼上客服逐字稿</p><p class="d">範例對話標示為虛構，不代表真實績效。</p></div></li>
+          <li class="code"><span class="who-tag">程式</span><div><p>在伺服器端呼叫 Gemini</p><p class="d">API 金鑰只存在伺服器，不會出現在網頁裡。</p></div></li>
+          <li class="ai"><span class="who-tag">AI</span><div><p>依四個面向各給 0–25 分，寫評語與培訓建議</p><p class="d">每一點都要引用逐字稿原句，禁止空泛形容詞。</p></div></li>
+          <li class="code"><span class="who-tag">程式</span><div><p>檢查回傳格式，再由程式加總總分</p><p class="d">格式不對就停止並顯示原因，不自動換模型。</p></div></li>
+          <li class="human"><span class="who-tag">人</span><div><p>主管依建議安排複訓</p><p class="d">分數是討論起點，不直接作為考核。</p></div></li>
+        </ol>
+      </div>
+    </div>
+    <details>
+      <summary>設計考量</summary>
+      <ul>
+        <li><b>可驗證：</b>評語與培訓建議必須引用逐字稿原句；總分由程式加總，不交給 AI 計算。</li>
+        <li><b>資料安全：</b>只使用虛構逐字稿並標示「非正式績效」；API 金鑰存放在伺服器端。</li>
+        <li><b>維護成本：</b>直接呼叫 Gemini 免費方案，不經過付費的 AI 閘道。</li>
+      </ul>
+    </details>
+  </section>
+
+  <!-- 3 -->
+  <section class="work" id="diag" aria-labelledby="diag-t">
+    <div class="work-head">
+      <span class="num" aria-hidden="true">3</span>
+      <div>
+        <h2 id="diag-t">企業 AI 導入診斷</h2>
+        <p class="what">企業還不確定 AI 能做什麼時，先填一份部門流程資訊，就能得到哪些環節適合導入、先做哪個、哪裡需要人工把關的初步報告。</p>
+      </div>
+    </div>
+    <div class="grid">
+      <div class="try">
+        <h3>怎麼試用</h3>
+        <ol class="steps">
+          <li>開啟作品，企業流程資訊已預先填好一份虛構的客服 QA 流程。</li>
+          <li>按「開始對話」。</li>
+          <li>點範例問題「請根據我填的企業流程資訊，幫我做 AI 導入診斷」。</li>
+        </ol>
+        <div class="actions">
+          <a class="btn primary" href="https://udify.app/chat/iRZRYANPM8KwhKzg" target="_blank" rel="noopener">開啟導入診斷</a>
+        </div>
+        <ul class="tags" aria-label="使用技術">
+          <li>Dify Chatflow</li><li>顧問式 Prompt 規則</li><li>Gemini 3.1 Flash-Lite</li><li>Python 多 Agent 版本</li>
+        </ul>
+      </div>
+      <div class="flow">
+        <h3>按下範例問題之後</h3>
+        <p class="sub">流程說明（不是即時畫面）</p>
+        <ol class="lane">
+          <li class="human"><span class="who-tag">人</span><div><p>填寫部門、流程、頻率、耗時與資料限制</p><p class="d">範例：每週 20 份對話、每份 15 分鐘。</p></div></li>
+          <li class="ai"><span class="who-tag">AI</span><div><p>先分析流程，再判斷可以交給 AI 的環節</p><p class="d">規則：不保證投資報酬、只用輸入的工時粗估、資訊不足就標示「需要補充」。</p></div></li>
+          <li class="ai"><span class="who-tag">AI</span><div><p>產出十段式報告</p><p class="d">痛點、可介入環節、短中長期順序、工時粗估、風險、第一版範圍、培訓建議。</p></div></li>
+          <li class="code"><span class="who-tag">程式</span><div><p>模型忙碌時自動重試</p><p class="d">重試 3 次仍失敗，就顯示提示。</p></div></li>
+          <li class="human"><span class="who-tag">人</span><div><p>主管與顧問討論後決定導入順序</p><p class="d">報告中標示需要人工複核的環節。</p></div></li>
+        </ol>
+      </div>
+    </div>
+    <details>
+      <summary>設計考量</summary>
+      <ul>
+        <li><b>可驗證：</b>另以 Python 串接診斷、方案、培訓規劃三個 Agent 實測。第一次測試時，模型自行寫出「節省 60%」等輸入沒有提供的成效；加入證據限制規則後重測，報告改為只依使用者提供的工時粗估。</li>
+        <li><b>資料安全：</b>範例只使用虛構企業資料，報告中須標示需要人工複核的環節。</li>
+        <li><b>維護成本：</b>改用 Gemini 免費方案，讓作品能長期公開試用而不產生費用。</li>
+      </ul>
+    </details>
+  </section>
+
+  <!-- 4 -->
+  <section class="work" id="edu" aria-labelledby="edu-t">
+    <div class="work-head">
+      <span class="num" aria-hidden="true">4</span>
+      <div>
+        <h2 id="edu-t">AI 教材產生器</h2>
+        <p class="what">把一段口語的訓練錄音逐字稿，整理成新人看得懂的教材、測驗題和簡報大綱。</p>
+      </div>
+    </div>
+    <div class="grid">
+      <div class="try">
+        <h3>怎麼試用</h3>
+        <ol class="steps">
+          <li>開啟作品，輸入框已預先填好一段虛構的退款訓練逐字稿。</li>
+          <li>可以修改內容，再按「執行」。</li>
+        </ol>
+        <p class="note">這個作品沒有自動重試；如果出現模型忙碌的提示，再按一次「執行」。</p>
+        <div class="actions">
+          <a class="btn primary" href="https://udify.app/completion/eHkV3p2p4VUYDn3w" target="_blank" rel="noopener">開啟教材產生器</a>
+        </div>
+        <ul class="tags" aria-label="使用技術">
+          <li>Dify 文字產生應用</li><li>Prompt 設計</li><li>Gemini 3.1 Flash-Lite</li>
+        </ul>
+      </div>
+      <div class="flow">
+        <h3>按下「執行」之後</h3>
+        <p class="sub">流程說明（不是即時畫面）</p>
+        <ol class="lane">
+          <li class="human"><span class="who-tag">人</span><div><p>培訓人員貼上訓練逐字稿</p><p class="d">逐字稿常有贅字、重複和跳躍的口語內容。</p></div></li>
+          <li class="ai"><span class="who-tag">AI</span><div><p>清理口語、整理成教材</p><p class="d">輸出教材重點、5 題測驗與簡報大綱。</p></div></li>
+          <li class="human"><span class="who-tag">人</span><div><p>培訓人員審稿後使用</p><p class="d">AI 產出是初稿，內容正確性由人確認。</p></div></li>
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5 -->
+  <section class="work" id="ins" aria-labelledby="ins-t">
+    <div class="work-head">
+      <span class="num" aria-hidden="true">5</span>
+      <div>
+        <h2 id="ins-t">好險有你｜旅遊保險 AI Agent 平台</h2>
+        <p class="what">7 人團隊專題。出發前幫旅客比較保險方案、依條款回答問題；出事後整理可能適用的理賠項目、待辦與應備文件，再協助用 Gmail 送件。</p>
+      </div>
+    </div>
+    <div class="grid">
+      <div class="try">
+        <p class="mine"><b>我負責：</b>理賠文件辨識（Agent 6），以及保險條文驗證工具（Agent 2 Validator）。下方流程以我負責的理賠文件辨識為例。</p>
+        <div class="actions">
+          <a class="btn primary" href="https://github.com/dinling1922/gae265-03-group-project" target="_blank" rel="noopener">查看程式碼（GitHub）</a>
+          <span class="btn off" aria-disabled="true">完整展示影片 11/28 公開</span>
+        </div>
+        <ul class="tags" aria-label="使用技術">
+          <li>React＋TypeScript</li><li>FastAPI</li><li>PostgreSQL＋pgvector</li><li>Docker Compose</li><li>Azure VM</li><li>Azure OpenAI</li><li>Azure Document Intelligence</li><li>BM25＋向量混合檢索</li><li>Google Drive／Gmail API</li><li>MCP 伺服器</li><li>LINE Bot</li>
+        </ul>
+      </div>
+      <div class="flow">
+        <h3>旅客上傳一份理賠文件之後</h3>
+        <p class="sub">流程說明</p>
+        <ol class="lane">
+          <li class="human"><span class="who-tag">人</span><div><p>旅客上傳理賠文件</p><p class="d">例如航空公司開立的延誤證明。</p></div></li>
+          <li class="ai"><span class="who-tag">AI</span><div><p>讀出文件文字，辨識是哪一種文件</p><p class="d">使用 Azure Document Intelligence。</p></div></li>
+          <li class="code"><span class="who-tag">程式</span><div><p>依補件規則對應理賠待辦、檢查必要欄位</p><p class="d">例如延誤證明缺少延誤期間，就提示向航空公司補件。</p></div></li>
+          <li class="code"><span class="who-tag">程式</span><div><p>遮蔽個資，存到旅客自己的 Google Drive</p><p class="d">結果分為通過、不確定、不通過。</p></div></li>
+          <li class="human"><span class="who-tag">人</span><div><p>旅客依提示補件或確認送出</p><p class="d">送件前一定由旅客本人確認。</p></div></li>
+        </ol>
+      </div>
+    </div>
+    <details>
+      <summary>設計考量</summary>
+      <ul>
+        <li><b>可驗證：</b>以 63 份模擬文件與 Python 腳本驗收辨識、待辦配對與異常情境，不以單次展示成功當作完成。</li>
+        <li><b>資料安全：</b>測試只使用模擬文件，並驗證個資遮蔽；團隊設計上，理賠文件存放在使用者自己的 Google Drive。</li>
+        <li><b>維護成本：</b>條文先經驗證工具比對原文才入庫，條款改版時可回查差異；團隊原則是保費、保額等數字一律由程式計算，LLM 不產生數字。</li>
+      </ul>
+    </details>
+  </section>
+
+  <!-- 6 -->
+  <section class="work" id="car" aria-labelledby="car-t">
+    <div class="work-head">
+      <span class="num" aria-hidden="true">6</span>
+      <div>
+        <h2 id="car-t">新手 AI 副駕</h2>
+        <p class="what">個人專題。新手獨自開車時，用語音取得導航資訊；遇到事故時，有離線也能看的安全步驟，並可用語音追問。</p>
+      </div>
+    </div>
+    <div class="grid">
+      <div class="try">
+        <p class="mine"><b>我負責：</b>需求分析、功能排序、技術整合與驗收，透過 ChatGPT 與 Codex 協作實作，並在模擬器與實體 iPhone 上驗證。</p>
+        <div class="actions" id="car-actions">
+          <span class="btn off" aria-disabled="true">展示影片整理中</span>
+        </div>
+        <ul class="tags" aria-label="使用技術">
+          <li>Flutter（iOS）</li><li>Google Navigation SDK</li><li>語音辨識 STT</li><li>語音合成 TTS</li><li>Azure OpenAI Responses API</li><li>RAG 驗證規劃</li>
+        </ul>
+      </div>
+      <div class="flow">
+        <h3>事故時用語音提問之後</h3>
+        <p class="sub">流程說明</p>
+        <ol class="lane">
+          <li class="human"><span class="who-tag">人</span><div><p>駕駛用語音描述狀況</p></div></li>
+          <li class="code"><span class="who-tag">程式</span><div><p>把語音轉成文字，請駕駛確認後才送出</p><p class="d">避免辨識錯誤的內容被直接送給 AI。</p></div></li>
+          <li class="ai"><span class="who-tag">AI</span><div><p>依情境引導下一步</p><p class="d">只做情境引導，肇事責任判定不在功能範圍內。</p></div></li>
+          <li class="code"><span class="who-tag">程式</span><div><p>用語音朗讀回覆</p><p class="d">固定的安全七步驟存在 App 本機，沒有網路也能看。</p></div></li>
+        </ol>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <p>趙翊君（Lala）｜<a href="https://github.com/dinling1922" target="_blank" rel="noopener">GitHub：dinling1922</a></p>
+    <p>所有範例皆為虛構資料，不代表任何真實企業或客戶。</p>
+  </div>
+</footer>
+</body>
+</html>
