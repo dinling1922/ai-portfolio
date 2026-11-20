@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>客服知識庫｜即時執行過程｜趙翊君</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=Noto+Serif+TC:wght@600;800&display=swap" rel="stylesheet">
+<style>
+  :root{--paper:#FCFCFA;--panel:#F1F3F2;--ink:#1C2733;--muted:#5B6672;--line:#D9DEDC;
+    --ai:#6747C7;--ai-bg:#EFEBFA;--code:#0B7268;--code-bg:#E3F2EF;--human:#9A6200;--human-bg:#FBF0DB;--link:#1F4FA8;--bad:#B3261E}
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--paper);color:var(--ink);font-family:"Noto Sans TC",system-ui,sans-serif;font-size:17px;line-height:1.7}
+  a{color:var(--link)}
+  a:focus-visible,button:focus-visible,textarea:focus-visible{outline:3px solid var(--link);outline-offset:2px}
+  .wrap{max-width:1180px;margin:0 auto;padding:0 28px}
+  header{padding:32px 0 24px;border-bottom:1px solid var(--line)}
+  .back{font-size:15px;text-decoration:none}
+  h1{font-family:"Noto Serif TC",serif;font-weight:800;font-size:clamp(26px,3.4vw,38px);line-height:1.35;margin:14px 0 8px}
+  .lead{margin:0;color:var(--muted);max-width:46em}
+  main{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:36px;padding:32px 0 64px}
+  @media (max-width:900px){main{grid-template-columns:1fr}}
+  h2{font-size:17px;margin:0 0 14px}
+
+  /* chat */
+  .examples{display:flex;flex-direction:column;gap:8px;margin-bottom:16px}
+  .ex{font:inherit;font-size:15px;text-align:left;padding:10px 14px;border:1px solid var(--line);border-radius:10px;background:#fff;cursor:pointer;color:var(--ink)}
+  .ex:hover{border-color:var(--ink)}
+  .ex small{display:block;color:var(--muted);font-size:13px}
+  form{display:flex;gap:10px;align-items:flex-end;margin-bottom:20px}
+  textarea{flex:1;font:inherit;font-size:16px;padding:10px 12px;border:1px solid var(--line);border-radius:10px;resize:vertical;min-height:52px;background:#fff}
+  .send{font:inherit;font-weight:700;padding:12px 20px;border-radius:10px;border:2px solid var(--ink);background:var(--ink);color:#fff;cursor:pointer;white-space:nowrap}
+  .send:disabled{opacity:.5;cursor:default}
+  .answer{background:#fff;border:1px solid var(--line);border-radius:14px;padding:18px 20px;min-height:140px}
+  .answer .q{font-weight:700;margin:0 0 10px}
+  .answer .empty{color:var(--muted);margin:0}
+  .answer .body p{margin:0 0 8px}
+  .answer .body ul{margin:0 0 8px;padding-left:1.3em}
+  .answer .src{margin-top:12px;font-size:14px;color:var(--muted);border-top:1px solid var(--line);padding-top:10px}
+  .answer .err{color:var(--bad);margin:0}
+
+  /* trace */
+  .trace{background:#fff;border:1px solid var(--line);border-radius:16px;padding:22px 22px 6px;position:sticky;top:16px;align-self:start}
+  .live{display:inline-flex;align-items:center;gap:8px;font-size:14px;color:var(--muted);margin:-6px 0 16px}
+  .dot{width:9px;height:9px;border-radius:50%;background:var(--line)}
+  .running .dot{background:#1E8E3E;animation:pulse 1s infinite}
+  @keyframes pulse{50%{opacity:.3}}
+  @media (prefers-reduced-motion:reduce){.running .dot{animation:none}}
+  .lane{list-style:none;margin:0;padding:0}
+  .lane li{position:relative;display:grid;grid-template-columns:64px 1fr;gap:14px;padding:0 0 20px;opacity:.38;transition:opacity .25s}
+  .lane li.on,.lane li.done{opacity:1}
+  .lane li::before{content:"";position:absolute;left:31px;top:30px;bottom:0;width:2px;background:var(--line)}
+  .lane li:last-child::before{display:none}
+  .who-tag{align-self:start;justify-self:center;width:64px;text-align:center;font-size:14px;font-weight:700;padding:3px 0;border-radius:999px;position:relative;z-index:1}
+  .ai .who-tag{background:var(--ai-bg);color:var(--ai)}
+  .code .who-tag{background:var(--code-bg);color:var(--code)}
+  .human .who-tag{background:var(--human-bg);color:var(--human)}
+  .lane p{margin:0}
+  .lane .d{font-size:15px;color:var(--muted)}
+  .stat{font-size:14px;font-weight:700;color:var(--ink);margin-left:6px}
+  .lane li.on .t::after{content:"處理中…";font-size:13px;color:#1E8E3E;margin-left:8px;font-weight:700}
+  .chunks{list-style:none;margin:10px 0 0;padding:0;display:flex;flex-direction:column;gap:8px}
+  .chunks li{display:block;opacity:1;padding:8px 10px;border-radius:8px;background:var(--panel);font-size:14px;line-height:1.6;grid-template-columns:none}
+  .chunks li::before{display:none}
+  .chunks b{font-weight:700;color:var(--code)}
+  .note{font-size:14px;color:var(--muted);margin:4px 0 16px}
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <a class="back" href="./#kb">回到作品總覽</a>
+    <h1>客服知識庫：AI 每一步在做什麼，即時顯示</h1>
+    <p class="lead">選一個範例問題或自己輸入。左邊是回答，右邊是這次實際執行的步驟：從 SOP 取回了哪幾段、相似度多少、用了哪個模型、各花多久。所有內容都是虛構的電商客服 SOP。</p>
+  </div>
+</header>
+
+<div class="wrap">
+<main>
+  <section aria-labelledby="ask">
+    <h2 id="ask">試著問一題</h2>
+    <div class="examples">
+      <button class="ex" type="button" data-q="客戶用信用卡付款、商品還沒出貨，申請退款時要確認哪些資訊？">客戶用信用卡付款、商品還沒出貨，申請退款時要確認哪些資訊？<small>看它從 SOP 取回哪段、怎麼整理</small></button>
+      <button class="ex" type="button" data-q="可以幫我查訂單 TW12345 現在到哪裡了嗎？">可以幫我查訂單 TW12345 現在到哪裡了嗎？<small>看它遇到做不到的事時怎麼說明</small></button>
+      <button class="ex" type="button" data-q="員工旅遊的補助怎麼申請？">員工旅遊的補助怎麼申請？<small>SOP 裡沒有的內容，看它會不會亂答</small></button>
+    </div>
+    <form id="f">
+      <label class="sr" for="q" style="position:absolute;left:-9999px">問題</label>
+      <textarea id="q" maxlength="300" placeholder="或自己輸入問題（300 字以內）"></textarea>
+      <button class="send" id="send" type="submit">送出</button>
+    </form>
+    <div class="answer" id="answer" aria-live="polite"><p class="empty">回答會顯示在這裡。</p></div>
+  </section>
+
+  <aside class="trace" aria-labelledby="tr" id="trace">
+    <h2 id="tr">這次的執行過程</h2>
+    <p class="live" id="live"><span class="dot"></span><span id="livetxt">即時執行，尚未開始</span></p>
+    <ol class="lane" id="lane">
+      <li class="human" data-step="ask"><span class="who-tag">人</span><div><p class="t">提出問題</p><p class="d" id="d-ask">等待問題</p></div></li>
+      <li class="code" data-step="knowledge-retrieval"><span class="who-tag">程式</span><div><p class="t">到知識庫找出最相關的 SOP 段落<span class="stat" id="s-kr"></span></p><p class="d">把問題轉成向量，和 SOP 段落比對相似度，取前 3 段。</p><ul class="chunks" id="chunks"></ul></div></li>
+      <li class="ai" data-step="llm"><span class="who-tag">AI</span><div><p class="t">只根據取回的段落回答<span class="stat" id="s-llm"></span></p><p class="d">規則：查不到就說找不到、不能假裝查詢真實訂單、以「客服該怎麼做」的角度回答。</p></div></li>
+      <li class="code" data-step="answer"><span class="who-tag">程式</span><div><p class="t">附上引用來源，回傳答案<span class="stat" id="s-ans"></span></p><p class="d" id="d-src">模型忙碌時自動重試 3 次。</p></div></li>
+    </ol>
+    <p class="note">右側資料來自 Dify 執行時的即時回報，經中繼站過濾後顯示；API 金鑰只存在伺服器端。</p>
+  </aside>
+</main>
+</div>
+
+<script>
+const RELAY = "https://ai-portfolio-relay.dinling1922.workers.dev/";
+const $ = (id) => document.getElementById(id);
+const steps = [...document.querySelectorAll("#lane > li")];
+let busy = false;
+
+const esc = (s) => s.replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+function md(text) {
+  const lines = esc(text).split("\n");
+  let html = "", inList = false;
+  for (let raw of lines) {
+    const l = raw.replace(/\*\*(.+?)\*\*/g, "<b>$1</b>");
+    const m = l.match(/^\s*(?:[*-]|\d+\.)\s+(.*)$/);
+    if (m) { if (!inList) { html += "<ul>"; inList = true; } html += "<li>" + m[1] + "</li>"; continue; }
+    if (inList) { html += "</ul>"; inList = false; }
+    if (l.trim()) html += "<p>" + l + "</p>";
+  }
+  if (inList) html += "</ul>";
+  return html;
+}
+function setStep(name, state) {
+  const li = steps.find((s) => s.dataset.step === name);
+  if (!li) return;
+  li.classList.remove("on", "done");
+  if (state) li.classList.add(state);
+}
+function reset(q) {
+  steps.forEach((s) => s.classList.remove("on", "done"));
+  $("chunks").innerHTML = ""; $("s-kr").textContent = ""; $("s-llm").textContent = ""; $("s-ans").textContent = "";
+  $("d-src").textContent = "模型忙碌時自動重試 3 次。";
+  $("d-ask").textContent = "「" + q + "」";
+  setStep("ask", "done");
+  $("answer").innerHTML = '<p class="q">' + esc(q) + '</p><div class="body"></div>';
+}
+function setLive(running, text) {
+  $("live").classList.toggle("running", running);
+  $("livetxt").textContent = text;
+}
+
+async function ask(q) {
+  q = q.trim();
+  if (!q || busy) return;
+  busy = true; $("send").disabled = true;
+  reset(q); setLive(true, "即時執行中");
+  const t0 = performance.now();
+  let answer = "";
+  try {
+    const res = await fetch(RELAY, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ query: q }) });
+    if (!res.ok) { const j = await res.json().catch(() => ({})); throw new Error(j.error || "連線失敗，請稍後再試。"); }
+    const reader = res.body.getReader(); const dec = new TextDecoder(); let buf = "";
+    for (;;) {
+      const { value, done } = await reader.read(); if (done) break;
+      buf += dec.decode(value, { stream: true });
+      let i;
+      while ((i = buf.indexOf("\n\n")) >= 0) {
+        const line = buf.slice(0, i); buf = buf.slice(i + 2);
+        if (!line.startsWith("data:")) continue;
+        const e = JSON.parse(line.slice(5));
+        if (e.type === "node_start") setStep(e.node, "on");
+        if (e.type === "node_end") {
+          setStep(e.node, "done");
+          const sec = (e.ms / 1000).toFixed(1) + " 秒";
+          if (e.node === "knowledge-retrieval") {
+            $("s-kr").textContent = sec;
+            $("chunks").innerHTML = (e.chunks || []).map((c) =>
+              "<li><b>相似度 " + (c.score ?? "—") + "</b>　" + esc(c.text).replace(/\n/g, "　") + "</li>").join("");
+          }
+          if (e.node === "llm") $("s-llm").textContent = (e.model ? e.model + "，" : "") + sec;
+          if (e.status && e.status !== "succeeded") $("d-src").textContent = "這一步沒有成功，已改用預設提示。";
+        }
+        if (e.type === "token") { answer += e.text; $("answer").querySelector(".body").innerHTML = md(answer); }
+        if (e.type === "end") {
+          const srcs = [...new Set(e.sources || [])];
+          $("d-src").textContent = srcs.length ? "引用：" + srcs.join("、") : "這次沒有引用任何 SOP 段落。";
+          if (srcs.length) $("answer").insertAdjacentHTML("beforeend", '<p class="src">引用來源：' + esc(srcs.join("、")) + "</p>");
+        }
+        if (e.type === "error") throw new Error(e.message);
+      }
+    }
+    $("s-ans").textContent = "總計 " + ((performance.now() - t0) / 1000).toFixed(1) + " 秒";
+    setStep("answer", "done");
+    setLive(false, "這次執行已完成");
+  } catch (err) {
+    $("answer").insertAdjacentHTML("beforeend", '<p class="err">' + esc(err.message || "發生錯誤") + "</p>");
+    setLive(false, "這次執行沒有完成");
+  } finally {
+    busy = false; $("send").disabled = false;
+  }
+}
+document.querySelectorAll(".ex").forEach((b) => b.addEventListener("click", () => { $("q").value = b.dataset.q; ask(b.dataset.q); }));
+$("f").addEventListener("submit", (ev) => { ev.preventDefault(); ask($("q").value); });
+</script>
+</body>
+</html>

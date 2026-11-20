@@ -113,11 +113,11 @@ export default {
             if (!line) continue;
             let evt; try { evt = JSON.parse(line.slice(5).trim()); } catch { continue; }
             const out = slim(evt);
-            if (out) await writer.write(enc.encode(`data: ${JSON.stringify(out)}\n\n`));
+            if (out) await writer.write(enc.encode("data: " + JSON.stringify(out) + "\n\n"));
           }
         }
       } catch {
-        await writer.write(enc.encode(`data: ${JSON.stringify({ type: "error", message: "連線中斷，請再試一次。" })}\n\n`));
+        await writer.write(enc.encode("data: " + JSON.stringify({ type: "error", message: "連線中斷，請再試一次。" }) + "\n\n"));
       } finally {
         await writer.close();
       }
