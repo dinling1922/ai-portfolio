@@ -179,8 +179,10 @@ async function ask(q) {
         }
         if (e.type === "token") { answer += e.text; $("answer").querySelector(".body").innerHTML = md(answer); }
         if (e.type === "end") {
-          const srcs = [...new Set(e.sources || [])];
-          $("d-src").textContent = srcs.length ? "引用：" + srcs.join("、") : "這次沒有引用任何 SOP 段落。";
+          let srcs = [...new Set(e.sources || [])];
+          const notFound = /找不到相關資訊/.test(answer);
+          if (notFound) srcs = [];
+          $("d-src").textContent = notFound ? "取回的段落都不足以回答，所以回覆找不到，沒有引用。" : srcs.length ? "引用：" + srcs.join("、") : "這次沒有引用任何 SOP 段落。";
           if (srcs.length) $("answer").insertAdjacentHTML("beforeend", '<p class="src">引用來源：' + esc(srcs.join("、")) + "</p>");
         }
         if (e.type === "error") throw new Error(e.message);
