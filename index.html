@@ -113,6 +113,8 @@
   .plan .who-tag{background:#fff;color:var(--muted);border:2px dashed var(--line)}
   .proof{font-size:15px;background:var(--panel);border-radius:10px;padding:12px 16px;margin:4px 0 20px}
   .no-js .tabs [role=tabpanel][hidden]{display:block}
+  .video{position:relative;aspect-ratio:16/9;max-width:760px;margin:0 0 26px;border-radius:12px;overflow:hidden;background:#000}
+  .video iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
   footer{padding:48px 0 64px;color:var(--muted);font-size:15px}
   footer p{margin:0 0 6px}
 </style>
@@ -141,7 +143,7 @@
       <li><a href="#diag"><span class="n">3</span><span class="t">企業 AI 導入診斷</span><span class="s">可試用</span></a></li>
       <li><a href="#edu"><span class="n">4</span><span class="t">AI 教材產生器</span><span class="s">可試用</span></a></li>
       <li><a href="#ins"><span class="n">5</span><span class="t">好險有你｜旅遊保險 AI 平台</span><span class="s">團隊專題</span></a></li>
-      <li><a href="#car"><span class="n">6</span><span class="t">新手 AI 副駕</span><span class="s">iOS App</span></a></li>
+      <li><a href="#car"><span class="n">6</span><span class="t">新手 AI 副駕</span><span class="s">影片</span></a></li>
     </ol>
   </nav>
 
@@ -441,8 +443,9 @@
     <div class="intro-row">
       <p class="mine"><b>我負責：</b>需求分析、功能排序、技術整合與驗收，透過 ChatGPT 與 Codex 協作實作，並在模擬器與實體 iPhone 上驗證代表性流程。</p>
       <div class="actions">
-        <span class="btn off" aria-disabled="true">展示影片整理中</span>
+        <a class="btn primary" href="https://youtu.be/J8ttlXsDf_w" target="_blank" rel="noopener">在 YouTube 觀看展示影片</a>
       </div>
+      <div class="video"><iframe src="https://www.youtube-nocookie.com/embed/J8ttlXsDf_w" title="新手 AI 副駕展示影片" loading="lazy" allow="accelerometer; encrypted-media; gyroscope; picture-in-picture; fullscreen" allowfullscreen></iframe></div>
       <ul class="tags" aria-label="使用技術">
         <li>Flutter（iOS）</li><li>Google Navigation SDK</li><li>語音辨識 STT</li><li>語音合成 TTS</li><li>Azure OpenAI Responses API</li><li>RAG 驗證規劃</li>
       </ul>
