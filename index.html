@@ -43,14 +43,33 @@
   .r-human{background:var(--human-bg)} .r-human b{color:var(--human)}
   .lead{max-width:42em;color:var(--muted);margin:0}
 
+  /* ---------- about ---------- */
+  .about{display:grid;grid-template-columns:minmax(0,3fr) minmax(0,2fr);gap:40px;margin:40px 0 8px;align-items:start}
+  @media (max-width:860px){.about{grid-template-columns:1fr;gap:24px}}
+  .about p{margin:0 0 14px;max-width:34em}
+  .about p:last-child{margin-bottom:0}
+  .facts{margin:0;border-top:2px solid var(--ink)}
+  .facts div{display:grid;grid-template-columns:5.2em 1fr;gap:14px;padding:12px 0;border-bottom:1px solid var(--line)}
+  .facts dt{font-weight:700;font-size:15px;color:var(--muted)}
+  .facts dd{margin:0;font-size:16px}
+  .links{display:flex;flex-wrap:wrap;gap:12px;margin-top:20px}
+
   /* ---------- index ---------- */
-  nav.index{padding:36px 0 8px}
-  nav.index h2{font-size:15px;font-weight:700;color:var(--muted);margin:0 0 12px}
-  nav.index ol{margin:0;padding:0;list-style:none;display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:4px 28px}
-  nav.index li a{display:flex;gap:12px;align-items:baseline;padding:8px 0;text-decoration:none;color:var(--ink);border-bottom:1px solid var(--line)}
+  nav.index{padding:40px 0 8px}
+  nav.index h2{font-size:15px;font-weight:700;color:var(--muted);margin:0 0 6px}
+  .quick{margin:0 0 14px;font-size:16px}
+  nav.index ol{margin:0;padding:0;list-style:none;border-top:2px solid var(--ink)}
+  nav.index li a{display:grid;grid-template-columns:2.2em minmax(0,1fr) auto;gap:4px 16px;align-items:baseline;padding:16px 0;text-decoration:none;color:var(--ink);border-bottom:1px solid var(--line)}
   nav.index li a:hover .t{text-decoration:underline}
-  nav.index .n{font-family:"Noto Serif TC",serif;font-weight:800;color:var(--muted);min-width:1.4em}
-  nav.index .s{margin-left:auto;font-size:14px;color:var(--muted);white-space:nowrap}
+  nav.index .n{font-family:"Noto Serif TC",serif;font-weight:800;font-size:22px;color:var(--muted)}
+  nav.index .t{font-weight:700;font-size:18px}
+  nav.index .d{grid-column:2;color:var(--muted);font-size:15px;line-height:1.6}
+  nav.index .s{grid-column:3;grid-row:1;font-size:14px;color:var(--muted);white-space:nowrap;border:1px solid var(--line);border-radius:999px;padding:2px 12px}
+  nav.index .s.hot{background:var(--ink);border-color:var(--ink);color:#fff;font-weight:700}
+  @media (max-width:600px){
+    nav.index li a{grid-template-columns:2em minmax(0,1fr)}
+    nav.index .s{grid-column:2;grid-row:auto;justify-self:start;margin-top:4px}
+  }
 
   /* ---------- work ---------- */
   section.work{padding:64px 0;border-bottom:1px solid var(--line);scroll-margin-top:12px}
@@ -125,25 +144,44 @@
   <div class="wrap">
     <p class="who"><strong>趙翊君（Lala）</strong>｜AI 解決方案顧問・企業 AI 導入與培訓</p>
     <h1>做 AI 應用時，我會先決定三件事：哪些交給 AI、哪些交給程式、哪些留給人。</h1>
+
+    <div class="about">
+      <div>
+        <p>我做過 13 年的客服、金融與保險理賠，也擔任過企業培訓管理師。工作上我習慣先弄清楚第一線的人卡在哪裡，再把處理方式整理成 SOP 和教材，帶新人練到能獨立上手。</p>
+        <p>現在我用 AI 工具把這些做法變成可以試用的系統：客服知識庫、客服對話評分、企業 AI 導入診斷、培訓教材產生器，以及團隊與個人專題裡的 RAG 知識庫和語音 App。</p>
+      </div>
+      <dl class="facts">
+        <div><dt>經歷</dt><dd>客服、金融、保險理賠、企業培訓，<span style="white-space:nowrap">共 13 年</span></dd></div>
+        <div><dt>學習中</dt><dd>緯育 TibaMe 商務 AI 應用開發人才養成班（12/3 結訓）</dd></div>
+        <div><dt>工具</dt><dd>Dify、Lovable、Azure AI、Gemini、Flutter，並用 Codex 協作開發</dd></div>
+        <div><dt>目標</dt><dd>AI 解決方案顧問、售前顧問、企業 AI 導入與培訓</dd></div>
+      </dl>
+    </div>
+
     <ul class="roles" aria-label="流程說明中的三種角色">
       <li class="r-ai"><b>AI</b>理解、判斷、產生文字</li>
       <li class="r-code"><b>程式</b>規則、計算、檢查、存檔</li>
       <li class="r-human"><b>人</b>輸入、確認、做最後決定</li>
     </ul>
-    <p class="lead">下面的作品大多可以直接試用。每個作品旁邊會說明：你按下按鈕之後，每一步由誰負責、在做什麼。所有範例都是虛構資料；作品使用免費的 Gemini 模型，如果出現「模型忙碌」的提示，等幾秒再送一次即可。</p>
+    <p class="lead">下面每個作品都標出：你按下按鈕之後，每一步由 AI、程式還是人負責。所有範例都是虛構資料；作品使用免費的 Gemini 模型，如果出現「模型忙碌」的提示，等幾秒再送一次即可。</p>
+    <div class="links">
+      <a class="btn primary" href="kb-live.html">先看 AI 即時在做什麼</a>
+      <a class="btn ghost" href="https://github.com/dinling1922" target="_blank" rel="noopener">GitHub：dinling1922</a>
+    </div>
   </div>
 </header>
 
 <main class="wrap">
   <nav class="index" aria-labelledby="idx">
-    <h2 id="idx">建議依序瀏覽</h2>
+    <h2 id="idx">六個作品，建議依序瀏覽</h2>
+    <p class="quick">只有兩分鐘？先看 1 的即時執行過程，再看 6 的展示影片。</p>
     <ol>
-      <li><a href="#kb"><span class="n">1</span><span class="t">Dify 客服知識庫</span><span class="s">即時執行過程</span></a></li>
-      <li><a href="#qa"><span class="n">2</span><span class="t">客服 QA 評分與培訓建議</span><span class="s">可試用</span></a></li>
-      <li><a href="#diag"><span class="n">3</span><span class="t">企業 AI 導入診斷</span><span class="s">可試用</span></a></li>
-      <li><a href="#edu"><span class="n">4</span><span class="t">AI 教材產生器</span><span class="s">可試用</span></a></li>
-      <li><a href="#ins"><span class="n">5</span><span class="t">好險有你｜旅遊保險 AI 平台</span><span class="s">團隊專題</span></a></li>
-      <li><a href="#car"><span class="n">6</span><span class="t">新手 AI 副駕</span><span class="s">影片</span></a></li>
+      <li><a href="#kb"><span class="n">1</span><span class="t">Dify 客服知識庫</span><span class="s hot">即時執行過程</span><span class="d">客服新人用一般說法提問，得到依公司 SOP 整理的處理步驟，並看到答案出自哪份文件。</span></a></li>
+      <li><a href="#qa"><span class="n">2</span><span class="t">客服 QA 評分與培訓建議</span><span class="s">可試用</span><span class="d">主管貼上一段客服對話，得到四個面向的分數、有逐字稿依據的評語與培訓建議。</span></a></li>
+      <li><a href="#diag"><span class="n">3</span><span class="t">企業 AI 導入診斷</span><span class="s">可試用</span><span class="d">填一份部門流程資訊，得到哪些環節適合導入 AI、先做哪個、哪裡需要人工把關。</span></a></li>
+      <li><a href="#edu"><span class="n">4</span><span class="t">AI 教材產生器</span><span class="s">可試用</span><span class="d">把口語的訓練錄音逐字稿，整理成新人看得懂的教材、測驗題和簡報大綱。</span></a></li>
+      <li><a href="#ins"><span class="n">5</span><span class="t">好險有你｜旅遊保險 AI 平台</span><span class="s">團隊專題</span><span class="d">7 人團隊作品：推薦與比較旅平險、整理理賠待辦與文件。我負責理賠文件辨識與條文驗證工具。</span></a></li>
+      <li><a href="#car"><span class="n">6</span><span class="t">新手 AI 副駕</span><span class="s">影片</span><span class="d">個人專題的 iOS App：用語音問車主手冊、事故時一步步帶完安全流程，已在實體 iPhone 展示。</span></a></li>
     </ol>
   </nav>
 
