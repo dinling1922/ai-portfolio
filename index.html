@@ -217,12 +217,15 @@
   .feature-info strong{display:block;color:var(--forest);font:800 clamp(1.2rem,2vw,1.58rem)/1.35 "Noto Serif TC",Georgia,serif}
   .feature-info span,.other-card span{display:block;color:var(--muted);margin-top:5px}
   .short-section{background:#efede3;padding:clamp(20px,3vw,32px);border:1px solid #e4e4d8;border-radius:15px}
-  .short-card{display:grid;grid-template-columns:clamp(68px,9vw,112px) minmax(0,1fr);gap:13px;align-items:center;padding:9px;min-height:116px}
-  .short-thumb{aspect-ratio:4/5;display:grid;align-content:center;justify-items:center;gap:5px;border-radius:7px;font:700 clamp(.8rem,1.9vw,1.25rem)/1.15 Georgia,serif;color:white;text-align:center;background:linear-gradient(147deg,#315e49,#173a2e)}
-  .short-thumb.sql{background:linear-gradient(147deg,#9b631b,#734512)}
-  .short-thumb small{font:inherit;font-size:.73em}
-  .short-info{display:grid;gap:4px;padding-right:4px;line-height:1.55}
-  .short-info small{font-size:.85rem;color:var(--muted)}
+  .short-card{display:grid;grid-template-columns:minmax(0,1fr);align-content:start;gap:16px;padding:15px}
+  .short-player{display:block;width:100%;max-width:222px;min-height:200px;aspect-ratio:9/16;justify-self:center;background:#18231d;border:0;border-radius:8px}
+  .short-info{min-width:0;line-height:1.55}
+  .short-info h3{margin:0;font-size:1.08rem}
+  .short-info p{margin:4px 0;color:var(--muted);font-size:.9rem}
+  .short-info a{display:inline-flex;align-items:center;min-height:44px;font-weight:700;text-underline-offset:4px}
+  @media (min-width:940px){
+    .short-card{grid-template-columns:minmax(200px,222px) minmax(0,1fr);align-items:center}
+  }
   .section-links{display:flex;flex-wrap:wrap;gap:8px 18px;margin:13px 0 0}
   .section-links a{display:inline-flex;align-items:center;min-height:44px;font-weight:700;text-underline-offset:4px}
   .other-card{padding:15px 17px}
@@ -306,23 +309,27 @@
     <section class="home-section short-section" id="shorts" aria-labelledby="shorts-title">
       <h2 id="shorts-title">科技短講</h2>
       <ul class="short-grid">
-        <li>
-          <a class="short-card" href="https://www.youtube.com/shorts/8cgAltRxLPE">
-            <span class="short-thumb" aria-hidden="true">SDD <small>▶</small></span>
-            <span class="short-info">
-              <strong>Vibe Coding 越改越亂？用 SDD 先把規格寫清楚</strong>
-              <small>1:28 · 在 YouTube 觀看</small>
-            </span>
-          </a>
+        <li class="short-card">
+          <iframe class="short-player" src="https://www.youtube-nocookie.com/embed/8cgAltRxLPE"
+            title="Vibe Coding 越改越亂？用 SDD 先把規格寫清楚" loading="lazy"
+            referrerpolicy="strict-origin-when-cross-origin"
+            allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+          <div class="short-info">
+            <h3>Vibe Coding 越改越亂？用 SDD 先把規格寫清楚</h3>
+            <p>1:28</p>
+            <a href="https://www.youtube.com/shorts/8cgAltRxLPE" target="_blank" rel="noopener">在 YouTube 觀看</a>
+          </div>
         </li>
-        <li>
-          <a class="short-card" href="https://www.youtube.com/shorts/JSrDkUlmsyA">
-            <span class="short-thumb sql" aria-hidden="true">SQL /<br>NoSQL <small>▶</small></span>
-            <span class="short-info">
-              <strong>SQL 和 NoSQL 差在哪？從 Excel 認識資料庫</strong>
-              <small>1:44 · 在 YouTube 觀看</small>
-            </span>
-          </a>
+        <li class="short-card">
+          <iframe class="short-player" src="https://www.youtube-nocookie.com/embed/JSrDkUlmsyA"
+            title="SQL 和 NoSQL 差在哪？從 Excel 認識資料庫" loading="lazy"
+            referrerpolicy="strict-origin-when-cross-origin"
+            allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+          <div class="short-info">
+            <h3>SQL 和 NoSQL 差在哪？從 Excel 認識資料庫</h3>
+            <p>1:44</p>
+            <a href="https://www.youtube.com/shorts/JSrDkUlmsyA" target="_blank" rel="noopener">在 YouTube 觀看</a>
+          </div>
         </li>
       </ul>
       <div class="section-links">
