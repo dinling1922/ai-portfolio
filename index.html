@@ -208,11 +208,11 @@
   .feature-grid,.short-grid,.other-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;margin:0;padding:0;list-style:none}
   .feature-card,.short-card,.other-card{display:block;border:1px solid #bac6ba;border-radius:13px;background:var(--surface);color:var(--ink);text-decoration:none;height:100%}
   .feature-card:hover,.short-card:hover,.other-card:hover{border-color:var(--forest);box-shadow:0 5px 16px #233e2d17}
-  .feature-visual{aspect-ratio:16/8;display:grid;place-items:center;padding:5%;overflow:hidden;border-radius:12px 12px 0 0}
+  .feature-visual{position:relative;aspect-ratio:16/8;display:grid;place-items:center;overflow:hidden;border-radius:12px 12px 0 0}
   .insurance-visual{background:linear-gradient(135deg,#e5dbca,#c4d3c6)}
-  .insurance-visual img{display:block;width:95%;border:5px solid #354338;border-radius:9px;box-shadow:0 7px 21px #172e2a36}
+  .insurance-visual img{position:absolute;display:block;width:auto;height:auto;max-width:90%;max-height:85%;border:5px solid #354338;border-radius:9px;box-shadow:0 7px 21px #172e2a36}
   .car-visual{background:radial-gradient(ellipse at 50% 30%,#56745b,#1d3b32 80%)}
-  .car-visual img{display:block;width:42%;max-width:164px;border:4px solid #192622;border-radius:16px;box-shadow:0 8px 25px #14221e66}
+  .car-visual img{position:absolute;display:block;width:auto;height:92%;max-width:46%;border:4px solid #192622;border-radius:16px;box-shadow:0 8px 25px #14221e66}
   .feature-info{display:block;padding:16px 19px 19px}
   .feature-info strong{display:block;color:var(--forest);font:800 clamp(1.2rem,2vw,1.58rem)/1.35 "Noto Serif TC",Georgia,serif}
   .feature-info span,.other-card span{display:block;color:var(--muted);margin-top:5px}
